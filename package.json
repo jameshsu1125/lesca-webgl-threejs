@@ -1,6 +1,6 @@
 {
   "name": "lesca-webgl-threejs",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "It's can build full page webgl easily.",
   "main": "lib/index.js",
   "scripts": {
@@ -62,7 +62,6 @@
   "dependencies": {
     "cannon-es": "^0.19.0",
     "cannon-es-debugger": "^1.0.0",
-    "copy-text-to-clipboard": "^3.0.1",
     "lesca-enterframe": "^1.1.2",
     "lesca-threejs-orbitcontrols": "^1.1.2",
     "stats-js": "^1.0.1",
