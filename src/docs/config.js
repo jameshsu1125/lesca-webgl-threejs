@@ -1,4 +1,4 @@
 module.exports = {
-  name: 'lesca-',
+  name: 'lesca-webgl-threejs',
   description: '',
 };

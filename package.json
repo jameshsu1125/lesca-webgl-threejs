@@ -1,7 +1,7 @@
 {
-  "name": "npm-base-package",
+  "name": "lesca-webgl-threejs",
   "version": "0.0.1",
-  "description": "npm-base-package",
+  "description": "It's can build full page webgl easily.",
   "main": "lib/index.js",
   "scripts": {
     "start": "webpack-dev-server --mode development",
@@ -15,7 +15,9 @@
   "keywords": [
     "lesca",
     "衝康吉",
-    "jameshsu1125"
+    "jameshsu1125",
+    "threejs",
+    "webgl"
   ],
   "license": "MIT",
   "devDependencies": {
@@ -26,10 +28,13 @@
     "@babel/plugin-transform-runtime": "^7.17.0",
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-react": "^7.16.7",
+    "@babel/preset-typescript": "^7.16.7",
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
     "@mui/icons-material": "^5.6.2",
     "@mui/material": "^5.6.3",
+    "@types/react": "^18.0.8",
+    "@types/three": "^0.139.0",
     "autoprefixer": "^10.4.5",
     "babel-loader": "^8.2.5",
     "concurrently": "^7.1.0",
@@ -54,9 +59,13 @@
     "webpack-dev-server": "^4.8.1"
   },
   "author": "jamehsu1125 <jameshsu1125@gmail.com>",
-  "homepage": "https://github.com/jameshsu1125/npm-base-package",
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:jameshsu1125/npm-base-package.git"
+  "dependencies": {
+    "cannon-es": "^0.19.0",
+    "cannon-es-debugger": "^1.0.0",
+    "copy-text-to-clipboard": "^3.0.1",
+    "lesca-enterframe": "^1.1.2",
+    "lesca-threejs-orbitcontrols": "^1.1.2",
+    "stats-js": "^1.0.1",
+    "three": "^0.139.2"
   }
 }
