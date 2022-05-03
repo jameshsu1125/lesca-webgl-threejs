@@ -24,10 +24,10 @@ export default class Webgl {
   public render: THREE.WebGLRenderer;
   public controls: Control;
   public clock: THREE.Clock;
-  public sky: Sky;
-  public physicsImpactMaterial: import('material/Material').Material;
-  public physicsStaticMaterial: import('material/Material').Material;
-  public world: import('world/World').World;
+  public sky!: Sky;
+  public physicsImpactMaterial!: import('material/Material').Material;
+  public physicsStaticMaterial!: import('material/Material').Material;
+  public world!: import('world/World').World;
 
   public stats: any;
   public enterframe: any;

@@ -1,14 +1,15 @@
 {
   "name": "lesca-webgl-threejs",
-  "version": "0.0.4",
+  "version": "1.0.1",
   "description": "It's can build full page webgl easily.",
   "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "scripts": {
     "start": "webpack-dev-server --mode development",
     "watch": "babel --watch src/lib --out-dir lib --extensions '.ts,.tsx'",
     "op": "babel src/lib -d lib --copy-files",
     "dev": "concurrently \"npm run watch\" \"npm run start\"",
-    "rm": "rm -rf node_modules/ package-lock.json",
+    "rm": "rm -rf node_modules/ package-lock.json lib/",
     "deploy": "gh-pages -d dist",
     "build": "NODE_ENV=production webpack"
   },
