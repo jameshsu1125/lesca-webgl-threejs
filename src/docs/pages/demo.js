@@ -16,8 +16,8 @@ const config = {
   },
   controls: {
     distance: { min: 30, max: 30 },
-    polar: { min: 35, max: 35 },
-    azimuth: { min: -360, max: 360 },
+    polar: { min: -70, max: 70 },
+    azimuth: { min: -Infinity, max: Infinity },
     offsetAzimuth: 0,
     enabled: true,
     panEasing: 100,

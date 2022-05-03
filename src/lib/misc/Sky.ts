@@ -23,8 +23,6 @@ export default class SkySun {
       mieCoefficient: { value: mieCoefficient },
     };
 
-    console.log(this.sky.material.uniforms);
-
     this.sun = new THREE.Vector3();
     this.update();
   }

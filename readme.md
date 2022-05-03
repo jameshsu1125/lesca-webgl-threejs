@@ -10,7 +10,7 @@
 
 It's can build full page webgl easily. inculde camera light orbitContorls sky sun.
 
-#### [Live Demo](https://www.npmjs.com/~jameshsu1125)
+#### [Live Demo](https://jameshsu1125.github.io/lesca-webgl-threejs/)
 
 # Installation
 
