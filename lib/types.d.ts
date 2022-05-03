@@ -34,6 +34,10 @@ export declare type ControlsUniforms = {
         min: number;
         max: number;
     };
+    default?: {
+        polar: number;
+        azimuth: number;
+    };
     offsetAzimuth: number;
     enabled: boolean;
     panEasing: number;

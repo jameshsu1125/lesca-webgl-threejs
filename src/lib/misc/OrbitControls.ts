@@ -20,6 +20,8 @@ export default class OrbitControls {
     this.controls = new Controls(Camera, Renderer.domElement);
     this.controls.enabled = enabled;
 
+    console.log(this.options);
+
     this.controls.maxPolarAngle = degreeToradian(90 - polar.min);
     this.controls.minPolarAngle = degreeToradian(90 - polar.max);
 
@@ -30,6 +32,12 @@ export default class OrbitControls {
     this.controls.maxDistance = distance.max;
 
     this.azimuthAngle = this.controls.getPolarAngle();
+
+    if (this.options.default) {
+      const { polar, azimuth } = this.options.default;
+      if (polar !== undefined) this.controls.setPolarAngle(degreeToradian(90 - polar));
+      if (azimuth !== undefined) this.controls.setAzimuthalAngle(degreeToradian(azimuth));
+    }
   }
 
   chase(mesh: THREE.Mesh, height = 1) {

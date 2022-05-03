@@ -28,6 +28,10 @@ const config = {
     distance: { min: 30, max: 30 },
     polar: { min: 35, max: 35 },
     azimuth: { min: -360, max: 360 },
+    default: {
+      polar: 0,
+      azimuth: 0,
+    },
     offsetAzimuth: -20,
     enabled: true,
     panEasing: 100,

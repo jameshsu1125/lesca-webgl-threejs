@@ -27,6 +27,10 @@ const controls: ControlsUniforms = {
   distance: { min: 30, max: 30 },
   polar: { min: 35, max: 35 },
   azimuth: { min: -Infinity, max: Infinity },
+  default: {
+    polar: 0,
+    azimuth: 0,
+  },
   offsetAzimuth: 0,
   enabled: true,
   panEasing: 100,

@@ -41,6 +41,10 @@ const config = {
     distance: { min: 30, max: 30 },
     polar: { min: 35, max: 35 },
     azimuth: { min: -Infinity, max: Infinity },
+    default: {
+      polar: 0,
+      azimuth: 0,
+    },
     offsetAzimuth: 0,
     enabled: true,
     panEasing: 100,
@@ -103,6 +107,7 @@ container.appendChild(render.domElement);
 | **distance**:_object_      | [orbitcontrols] |                min:30, max:30 |
 | **polar**:_object_         | [orbitcontrols] |                min:35, max:35 |
 | **azimuth**:_object_       | [orbitcontrols] | min: -Infinity, max: Infinity |
+| **default**:_object_       | [orbitcontrols] |           polor:0, azimuth: 0 |
 | **offsetAzimuth**:_number_ |                 |                             0 |
 | **panEasing**:_number_     |                 |                           100 |
 
