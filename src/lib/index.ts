@@ -69,6 +69,8 @@ export default class Webgl {
       this.world?.step(1 / 60, this.clock.getDelta());
     };
 
+    this.enterframe = Frame;
+
     Frame.add(this.update);
     Frame.play();
   }
