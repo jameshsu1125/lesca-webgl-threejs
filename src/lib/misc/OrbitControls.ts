@@ -20,8 +20,6 @@ export default class OrbitControls {
     this.controls = new Controls(Camera, Renderer.domElement);
     this.controls.enabled = enabled;
 
-    console.log(this.options);
-
     this.controls.maxPolarAngle = degreeToradian(90 - polar.min);
     this.controls.minPolarAngle = degreeToradian(90 - polar.max);
 
