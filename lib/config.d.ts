@@ -12,7 +12,7 @@ declare const Config: {
     light: LightUniforms;
     renderer: RendererUniforms;
     physics: boolean;
-    states: boolean;
+    stats: boolean;
 };
 export default Config;
 export { camera, sky, controls, light, renderer, physics };
