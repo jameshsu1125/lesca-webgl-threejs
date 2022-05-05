@@ -29,6 +29,7 @@ const config = {
   light: { color: 14737632, intensity: 1.5, position: { x: 0, y: 15, z: 0 }, shadowMapSize: 512 },
   renderer: { alpha: false, shadowType: 0, exposure: 0.5 },
   physics: false,
+  stats: true,
 };
 
 let webglRef;
@@ -44,6 +45,12 @@ const Demo = () => {
       const material = new THREE.MeshLambertMaterial({ color: 0x00ff00 });
       const cube = new THREE.Mesh(geometry, material);
       webgl.scene.add(cube);
+
+      console.log(webgl);
+
+      webgl.enterframe.add(() => {
+        webgl.stats.end();
+      });
 
       webglRef = webgl;
     }

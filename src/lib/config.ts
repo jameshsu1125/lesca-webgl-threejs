@@ -54,6 +54,7 @@ const renderer: RendererUniforms = {
 };
 
 const physics = false;
+const stats = false;
 
 const Config = {
   camera,
@@ -62,6 +63,7 @@ const Config = {
   light,
   renderer,
   physics,
+  stats,
 };
 
 export default Config;

@@ -44,7 +44,7 @@ export default class Webgl {
     this.controls = new Control(this.camera, this.render, this.options.controls);
     this.clock = new THREE.Clock();
 
-    const { physics, sky } = this.options;
+    const { physics, sky, stats } = this.options;
 
     if (sky.enabled) {
       this.sky = new Sky(this.options.sky);
@@ -58,8 +58,12 @@ export default class Webgl {
       this.physicsStaticMaterial = Static;
       this.world = new PhysicsWorld().world;
       this.world.addContactMaterial(physicsMaterial.material);
+    }
+
+    if (stats) {
       this.stats = new Statsjs();
       this.stats.showPanel(0);
+      document.body.appendChild(this.stats.dom);
     }
 
     this.update = () => {

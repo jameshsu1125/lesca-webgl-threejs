@@ -49,6 +49,7 @@ export declare type RendererUniforms = {
 };
 export declare type Uniforms = {
     physics: boolean;
+    states: boolean;
     sky: SkyUniforms;
     light: LightUniforms;
     camera: CameraUniforms;

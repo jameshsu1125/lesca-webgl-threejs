@@ -39,6 +39,7 @@ const config = {
   light: { color: 14737632, intensity: 1.5, position: { x: 0, y: 15, z: 0 }, shadowMapSize: 512 },
   renderer: { alpha: false, shadowType: 0 },
   physics: false,
+  stats: false,
 };
 
 const webgl = new Webgl(config);

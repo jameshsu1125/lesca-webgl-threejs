@@ -61,6 +61,7 @@ const config = {
     exposure: 0.5,
   },
   physics: false,
+  stats: false,
 };
 
 const webgl = new Webgl(config);
@@ -75,10 +76,13 @@ container.appendChild(render.domElement);
 
 | method                 |        description         |                                 default |
 | :--------------------- | :------------------------: | --------------------------------------: |
-| .**camera**:_object_   | [perspectiveCamera] setup. | [default](#camera-default-config-value) |
-| .**sky**:_object_      |        [Sky] setup.        |                                         |
-| .**controls**:_object_ |                            |                                         |
-| .**light**:_object_    |                            |
+| .**camera**:_object_   | [perspectiveCamera] setup. |       [default](#default-camera-config) |
+| .**sky**:_object_      |        [Sky] setup.        | [default](#camera-default-config-value) |
+| .**controls**:_object_ |   [orbitcontrols] setep.   |          [default](#default-sky-config) |
+| .**light**:_object_    |       [light] setup.       |        [default](#default-light-config) |
+| .**renderer**:_object_ |   [webglrenderer] setup.   |     [default](#default-renderer-config) |
+| .**physics**:_object_  |     [cannon-es] setup.     |      [default](#default-physics-config) |
+| .**stats**:_object_    |     [stats-js] setup.      |        [default](#default-stats-config) |
 
 #### Default camera config
 
@@ -134,6 +138,12 @@ container.appendChild(render.domElement);
 | :-------------------- | :---------: | ------: |
 | **physics**:_boolean_ | [cannon-es] |   false |
 
+#### Default stats config
+
+| key                 |    docs    | default |
+| :------------------ | :--------: | ------: |
+| **stats**:_boolean_ | [stats-js] |   false |
+
 ### Features
 
 - Code Linting ([eslint])
@@ -148,3 +158,4 @@ container.appendChild(render.domElement);
 [light]: https://threejs.org/docs/?q=light#api/en/lights/AmbientLight
 [webglrenderer]: https://threejs.org/docs/?q=renderer#api/en/renderers/WebGLRenderer
 [cannon-es]: https://www.npmjs.com/package/cannon-es
+[stats-js]: https://www.npmjs.com/package/stats-js

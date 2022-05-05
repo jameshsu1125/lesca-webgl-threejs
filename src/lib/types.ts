@@ -45,6 +45,7 @@ export type RendererUniforms = {
 
 export type Uniforms = {
   physics: boolean;
+  stats: boolean;
   sky: SkyUniforms;
   light: LightUniforms;
   camera: CameraUniforms;
