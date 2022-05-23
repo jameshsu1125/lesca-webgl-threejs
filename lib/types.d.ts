@@ -20,6 +20,7 @@ export declare type LightUniforms = {
 export declare type CameraUniforms = {
     fov: number;
     far: number;
+    dom?: HTMLElement;
 };
 export declare type ControlsUniforms = {
     distance: {

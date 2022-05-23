@@ -10,8 +10,12 @@ export default class Camera {
 
   constructor(options: CameraUniforms) {
     this.options = { ...config, ...options };
-    const { fov, far } = this.options;
+    const { fov, far, dom } = this.options;
 
-    this.camera = new THREE.PerspectiveCamera(fov, innerWidth / innerHeight, 0.1, far);
+    const width: Number = dom instanceof HTMLElement ? dom.clientWidth : innerWidth;
+    const height: Number = dom instanceof HTMLElement ? dom.clientHeight : innerHeight;
+    const ratio = Number(width) / Number(height);
+
+    this.camera = new THREE.PerspectiveCamera(fov, ratio, 0.1, far);
   }
 }

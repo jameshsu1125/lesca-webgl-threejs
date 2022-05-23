@@ -22,6 +22,7 @@ export type LightUniforms = {
 export type CameraUniforms = {
   fov: number;
   far: number;
+  dom?: HTMLElement;
 };
 
 export type ControlsUniforms = {

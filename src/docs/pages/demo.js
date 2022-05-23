@@ -39,6 +39,7 @@ const Demo = () => {
 
   useEffect(() => {
     if (!webglRef) {
+      config.camera.target = container.current;
       const webgl = new Webgl(config);
 
       const geometry = new THREE.BoxGeometry();
