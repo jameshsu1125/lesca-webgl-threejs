@@ -86,10 +86,11 @@ container.appendChild(render.domElement);
 
 #### Default camera config
 
-| key              | docs  | default |
-| :--------------- | :---: | ------: |
-| **fov**:_number_ | [fov] |      40 |
-| **far**:_number_ | [far] |     200 |
+| key                   |      docs      | default |
+| :-------------------- | :------------: | ------: |
+| **fov**:_number_      |     [fov]      |      40 |
+| **far**:_number_      |     [far]      |     200 |
+| **dom**:_HTMLElement_ | HTML container |         |
 
 #### Default sky config
 
