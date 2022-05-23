@@ -42,6 +42,8 @@ export type RendererUniforms = {
   alpha: false;
   shadowType: number;
   exposure: number;
+  outputEncoding: number;
+  physicallyCorrectLights: boolean;
 };
 
 export type Uniforms = {

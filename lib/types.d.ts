@@ -47,6 +47,8 @@ export declare type RendererUniforms = {
     alpha: false;
     shadowType: number;
     exposure: number;
+    outputEncoding: number;
+    physicallyCorrectLights: boolean;
 };
 export declare type Uniforms = {
     physics: boolean;

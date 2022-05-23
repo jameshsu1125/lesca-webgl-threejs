@@ -51,6 +51,8 @@ const renderer: RendererUniforms = {
   alpha: false,
   shadowType: THREE.BasicShadowMap,
   exposure: 0.5,
+  outputEncoding: THREE.sRGBEncoding,
+  physicallyCorrectLights: false,
 };
 
 const physics = false;

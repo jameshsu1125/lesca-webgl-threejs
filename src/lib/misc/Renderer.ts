@@ -11,7 +11,7 @@ export default class Renderer {
 
   constructor(options: RendererUniforms) {
     this.options = { ...config, ...options };
-    const { alpha, shadowType, exposure } = this.options;
+    const { alpha, shadowType, exposure, outputEncoding, physicallyCorrectLights } = this.options;
 
     const renderer = new THREE.WebGLRenderer({ alpha });
 
@@ -20,6 +20,8 @@ export default class Renderer {
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = shadowType;
     renderer.toneMappingExposure = exposure;
+    renderer.physicallyCorrectLights = physicallyCorrectLights;
+    renderer.outputEncoding = outputEncoding;
 
     this.resize = (Camera: THREE.PerspectiveCamera) => {
       const rendererSetSize = () => {
