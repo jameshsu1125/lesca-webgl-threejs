@@ -38,6 +38,10 @@ export default class OrbitControls {
     }
   }
 
+  lookAt(vec: THREE.Vector3 = new THREE.Vector3(0, 0, 0)) {
+    this.controls.target.set(vec.x, vec.y, vec.z);
+  }
+
   chase(mesh: THREE.Mesh, height = 1) {
     const { offsetAzimuth, panEasing } = this.options;
 

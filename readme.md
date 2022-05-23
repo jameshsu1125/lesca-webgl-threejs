@@ -59,6 +59,8 @@ const config = {
     alpha: false,
     shadowType: 0,
     exposure: 0.5,
+    outputEncoding: THREE.sRGBEncoding,
+    physicallyCorrectLights: false,
   },
   physics: false,
   stats: false,
