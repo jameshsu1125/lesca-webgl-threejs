@@ -115,8 +115,18 @@ container.appendChild(render.domElement);
 | **polar**:_object_         | [orbitcontrols] |                min:35, max:35 |
 | **azimuth**:_object_       | [orbitcontrols] | min: -Infinity, max: Infinity |
 | **default**:_object_       | [orbitcontrols] |           polor:0, azimuth: 0 |
-| **offsetAzimuth**:_number_ |                 |                             0 |
-| **panEasing**:_number_     |                 |                           100 |
+| **offsetAzimuth**:_number_ |     number      |                             0 |
+| **panEasing**:_number_     |     number      |                           100 |
+
+#### Methods of controls
+
+| function Name                                   |            description             |                                parameters                                | return |
+| :---------------------------------------------- | :--------------------------------: | :----------------------------------------------------------------------: | -----: |
+| .**fixed**(_Object_)                            |      Fixed angle perspective       | { **polor**:_Number_, **azimuth**:_number_, **taregt**: _THREE.Vector3_} |   void |
+| .**lookAt**(vec:_THREE.Vector3_)                |      focus on a target point       |                         **vec**:_THREE.Vector3_                          |   void |
+| .**chase**(mesh: _THREE.Mesh_, height:_number_) | camera will follow target smoothly |                         **mesh**:_THREE.vector3_                         |   void |
+| .**lock**()                                     |            lock camera             |                                                                          |   void |
+| .**unlock**()                                   |           unlock camera            |                                                                          |   void |
 
 #### Default light config
 
