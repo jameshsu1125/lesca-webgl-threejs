@@ -8,8 +8,8 @@ import {
 } from './types';
 
 const camera: CameraUniforms = {
-  fov: 40,
-  far: 200,
+  zoom: 200,
+  far: 75,
 };
 
 // todo => https://threejs.org/examples/webgl_shaders_sky.html

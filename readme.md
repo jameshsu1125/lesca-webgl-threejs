@@ -24,7 +24,7 @@ npm install lesca-webgl-threejs --save
 import Webgl from 'lesca-webgl-threejs';
 
 const config = {
-  camera: { fov: 40, far: 200 },
+  camera: { zoom: 200, far: 75 },
   sky: {
     enabled: true,
     turbidity: 3.8,
@@ -80,21 +80,21 @@ container.appendChild(render.domElement);
 
 ### Config
 
-| method                 |        description         |                                 default |
-| :--------------------- | :------------------------: | --------------------------------------: |
-| .**camera**:_object_   | [perspectiveCamera] setup. |       [default](#default-camera-config) |
-| .**sky**:_object_      |        [Sky] setup.        | [default](#camera-default-config-value) |
-| .**controls**:_object_ |   [orbitcontrols] setep.   |          [default](#default-sky-config) |
-| .**light**:_object_    |       [light] setup.       |        [default](#default-light-config) |
-| .**renderer**:_object_ |   [webglrenderer] setup.   |     [default](#default-renderer-config) |
-| .**physics**:_object_  |     [cannon-es] setup.     |      [default](#default-physics-config) |
-| .**stats**:_object_    |     [stats-js] setup.      |        [default](#default-stats-config) |
+| method                 |         description         |                                 default |
+| :--------------------- | :-------------------------: | --------------------------------------: |
+| .**camera**:_object_   | [orthographiccamera] setup. |       [default](#default-camera-config) |
+| .**sky**:_object_      |        [Sky] setup.         | [default](#camera-default-config-value) |
+| .**controls**:_object_ |   [orbitcontrols] setep.    |          [default](#default-sky-config) |
+| .**light**:_object_    |       [light] setup.        |        [default](#default-light-config) |
+| .**renderer**:_object_ |   [webglrenderer] setup.    |     [default](#default-renderer-config) |
+| .**physics**:_object_  |     [cannon-es] setup.      |      [default](#default-physics-config) |
+| .**stats**:_object_    |      [stats-js] setup.      |        [default](#default-stats-config) |
 
 #### Default camera config
 
 | key                   |      docs      | default |
 | :-------------------- | :------------: | ------: |
-| **fov**:_number_      |     [fov]      |      40 |
+| **zoom**:_number_     |     [zoom]     |      40 |
 | **far**:_number_      |     [far]      |     200 |
 | **dom**:_HTMLElement_ | HTML container |         |
 
@@ -181,10 +181,10 @@ container.appendChild(render.domElement);
 
 [eslint]: https://eslint.org/
 [orbitcontrols]: https://threejs.org/docs/#examples/en/controls/OrbitControls
-[perspectivecamera]: https://threejs.org/docs/index.html?q=cam#api/en/cameras/PerspectiveCamera
+[orthographiccamera]: https://threejs.org/docs/?q=OrthographicCamera#api/en/cameras/OrthographicCamera
 [sky]: https://threejs.org/examples/webgl_shaders_sky.html
-[fov]: https://threejs.org/docs/?q=camera#api/en/cameras/PerspectiveCamera.fov
-[far]: https://threejs.org/docs/?q=camera#api/en/cameras/PerspectiveCamera.far
+[zoom]: https://threejs.org/docs/?q=OrthographicCamera#api/en/cameras/OrthographicCamera.zoom
+[far]: https://threejs.org/docs/?q=OrthographicCamera#api/en/cameras/OrthographicCamera.far
 [light]: https://threejs.org/docs/?q=light#api/en/lights/AmbientLight
 [spotlight]: https://threejs.org/docs/#api/en/lights/SpotLight
 [spotlighthelper]: https://threejs.org/docs/#api/en/helpers/SpotLightHelper

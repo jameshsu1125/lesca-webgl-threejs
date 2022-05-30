@@ -14,7 +14,7 @@ const codes = [
     code: `import Webgl from "${name}"
     
 const config = {
-  camera: { fov: 40, far: 200 },
+  camera: { zoom: 200, far: 75 },
   sky: {
     enabled: true,
     turbidity: 3.8,

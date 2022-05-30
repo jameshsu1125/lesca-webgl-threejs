@@ -25,7 +25,7 @@ export declare type LightUniforms = {
     debug: Boolean;
 };
 export declare type CameraUniforms = {
-    fov: number;
+    zoom: number;
     far: number;
     dom?: HTMLElement;
 };
