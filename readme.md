@@ -54,7 +54,8 @@ const config = {
     spot: {
       color: 0x999999,
       intensity: 0.9,
-      position: { x: 0, y: 15, z: 0 },
+      far: 3,
+      position: { x: 0, y: 3, z: 0 },
     },
     shadowMapSize: 256,
     debug: true,

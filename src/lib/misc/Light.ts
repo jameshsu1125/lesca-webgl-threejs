@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { light as config } from '../config';
+import { light as config, light } from '../config';
 import { LightUniforms } from '../types';
 
 type TY = {
@@ -9,7 +9,7 @@ type TY = {
 
 const defaultTY = {
   target: new THREE.Mesh(),
-  offset: 15,
+  offset: light.spot.position.y,
 };
 
 export default class Light {
@@ -24,11 +24,11 @@ export default class Light {
     const light = new THREE.AmbientLight(ambient.color, ambient.intensity);
     Scene.add(light);
 
-    const spotLight = new THREE.SpotLight(spot.color, spot.intensity, 3);
+    const spotLight = new THREE.SpotLight(spot.color, spot.intensity, spot.far);
     spotLight.castShadow = true;
     spotLight.angle = Math.PI * 0.12;
     spotLight.penumbra = 1;
-    spotLight.distance = 3;
+    spotLight.distance = spot.far;
     spotLight.decay = 0.5;
 
     const { x, y, z } = spot.position;

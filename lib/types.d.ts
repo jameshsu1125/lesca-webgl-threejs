@@ -15,6 +15,7 @@ export declare type LightUniforms = {
     spot: {
         color: number;
         intensity: number;
+        far: number;
         position: {
             x: number;
             y: number;
