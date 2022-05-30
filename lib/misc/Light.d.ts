@@ -4,5 +4,5 @@ export default class Light {
     private options;
     light: THREE.PointLight;
     constructor(Scene: THREE.Scene, options: LightUniforms);
-    update(position: THREE.Vector3): void;
+    update(position: THREE.Vector3, offsetY?: number): void;
 }

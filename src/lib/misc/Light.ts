@@ -14,10 +14,12 @@ export default class Light {
     const light = new THREE.AmbientLight(ambient.color, ambient.intensity);
     Scene.add(light);
 
-    const spotLight = new THREE.SpotLight(spot.color, spot.intensity, 100);
+    const spotLight = new THREE.SpotLight(spot.color, spot.intensity, 3);
     spotLight.castShadow = true;
-    spotLight.angle = (Math.PI / 180) * 10;
+    spotLight.angle = Math.PI * 0.12;
     spotLight.penumbra = 1;
+    spotLight.distance = 3;
+    spotLight.decay = 0.5;
 
     const { x, y, z } = spot.position;
     spotLight.position.set(x, y, z);
@@ -34,8 +36,7 @@ export default class Light {
     this.light = spotLight;
   }
 
-  update(position: THREE.Vector3) {
-    const { x, y, z } = this.options.spot.position;
-    this.light.position.set(position.x + x, position.y + y, position.z + z);
+  update(position: THREE.Vector3, offsetY = 15) {
+    this.light.position.set(position.x, position.y + offsetY, position.z);
   }
 }

@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import Light from './misc/Light';
 import Control from './misc/OrbitControls';
 import Sky from './misc/Sky';
 import { Uniforms } from './types';
@@ -8,7 +9,7 @@ export default class Webgl {
     private update;
     scene: THREE.Scene;
     camera: THREE.Camera;
-    light: THREE.PointLight;
+    light: Light;
     render: THREE.WebGLRenderer;
     controls: Control;
     clock: THREE.Clock;

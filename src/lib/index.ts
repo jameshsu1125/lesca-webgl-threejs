@@ -20,7 +20,7 @@ export default class Webgl {
 
   public scene: THREE.Scene;
   public camera: THREE.Camera;
-  public light: THREE.PointLight;
+  public light: Light;
   public render: THREE.WebGLRenderer;
   public controls: Control;
   public clock: THREE.Clock;
@@ -37,7 +37,7 @@ export default class Webgl {
 
     this.scene = new THREE.Scene();
     this.camera = new Camera(this.options.camera).camera;
-    this.light = new Light(this.scene, this.options.light).light;
+    this.light = new Light(this.scene, this.options.light);
     this.renderer = new Renderer(this.options.renderer);
     this.renderer.resize(this.camera);
     this.render = this.renderer.renderer;
