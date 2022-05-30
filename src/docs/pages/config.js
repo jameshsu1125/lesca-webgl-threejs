@@ -1,3 +1,4 @@
+import * as THREE from 'three';
 export const config = {
   camera: { fov: 40, far: 200 },
   sky: {
@@ -21,8 +22,26 @@ export const config = {
     enabled: true,
     panEasing: 100,
   },
-  light: { color: 14737632, intensity: 0.8, position: { x: 0, y: 25, z: 20 }, shadowMapSize: 512 },
-  renderer: { alpha: false, shadowType: 0, exposure: 1.8 },
+  light: {
+    ambient: {
+      color: 0x5289d2,
+      intensity: 0.6,
+    },
+    spot: {
+      color: 0x999999,
+      intensity: 0.9,
+      position: { x: 0, y: 15, z: 0 },
+    },
+    shadowMapSize: 256,
+    debug: true,
+  },
+  renderer: {
+    alpha: false,
+    shadowType: THREE.PCFSoftShadowMap,
+    exposure: 0.5,
+    outputEncoding: THREE.sRGBEncoding,
+    physicallyCorrectLights: false,
+  },
   physics: false,
   stats: true,
 };

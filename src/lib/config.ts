@@ -37,19 +37,22 @@ const controls: ControlsUniforms = {
 };
 
 const light: LightUniforms = {
-  color: 0xe0e0e0,
-  intensity: 1.5,
-  position: {
-    x: 0,
-    y: 15,
-    z: 0,
+  ambient: {
+    color: 0x5289d2,
+    intensity: 0.6,
   },
-  shadowMapSize: 512,
+  spot: {
+    color: 0x999999,
+    intensity: 0.9,
+    position: { x: 0, y: 15, z: 0 },
+  },
+  shadowMapSize: 256,
+  debug: false,
 };
 
 const renderer: RendererUniforms = {
   alpha: false,
-  shadowType: THREE.BasicShadowMap,
+  shadowType: THREE.PCFSoftShadowMap,
   exposure: 0.5,
   outputEncoding: THREE.sRGBEncoding,
   physicallyCorrectLights: false,

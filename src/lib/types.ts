@@ -9,14 +9,21 @@ export type SkyUniforms = {
 };
 
 export type LightUniforms = {
-  color: number;
-  intensity: number;
-  position: {
-    x: number;
-    y: number;
-    z: number;
+  ambient: {
+    color: number;
+    intensity: number;
+  };
+  spot: {
+    color: number;
+    intensity: number;
+    position: {
+      x: number;
+      y: number;
+      z: number;
+    };
   };
   shadowMapSize: number;
+  debug: Boolean;
 };
 
 export type CameraUniforms = {

@@ -24,22 +24,19 @@ npm install lesca-webgl-threejs --save
 import Webgl from 'lesca-webgl-threejs';
 
 const config = {
-  camera: {
-    fov: 40,
-    far: 200,
-  },
+  camera: { fov: 40, far: 200 },
   sky: {
     enabled: true,
-    turbidity: 0,
-    rayleigh: 0.079,
-    mieCoefficient: 0.023,
-    mieDirectionalG: 0.226,
+    turbidity: 3.8,
+    rayleigh: 2.967,
+    mieCoefficient: 0.005,
+    mieDirectionalG: 0.7,
     inclination: 70,
-    azimuth: -102.7,
+    azimuth: 180,
   },
   controls: {
-    distance: { min: 30, max: 30 },
-    polar: { min: 35, max: 35 },
+    distance: { min: 13, max: 30 },
+    polar: { min: -70, max: 70 },
     azimuth: { min: -Infinity, max: Infinity },
     default: {
       polar: 0,
@@ -50,20 +47,27 @@ const config = {
     panEasing: 100,
   },
   light: {
-    color: 14737632,
-    intensity: 1.5,
-    position: { x: 0, y: 15, z: 0 },
-    shadowMapSize: 512,
+    ambient: {
+      color: 0x5289d2,
+      intensity: 0.6,
+    },
+    spot: {
+      color: 0x999999,
+      intensity: 0.9,
+      position: { x: 0, y: 15, z: 0 },
+    },
+    shadowMapSize: 256,
+    debug: true,
   },
   renderer: {
     alpha: false,
-    shadowType: 0,
+    shadowType: THREE.PCFSoftShadowMap,
     exposure: 0.5,
     outputEncoding: THREE.sRGBEncoding,
     physicallyCorrectLights: false,
   },
   physics: false,
-  stats: false,
+  stats: true,
 };
 
 const webgl = new Webgl(config);
@@ -130,12 +134,23 @@ container.appendChild(render.domElement);
 
 #### Default light config
 
-| key                        |  docs   |         default |
-| :------------------------- | :-----: | --------------: |
-| **color**:_number_         | [light] |        0xe0e0e0 |
-| **intensity**:_number_     | [light] |             1.5 |
-| **position**:_object_      | [light] | x: 0,y: 15,z: 0 |
-| **shadowMapSize**:_number_ | [light] |             512 |
+| key                        |       docs        |             default |
+| :------------------------- | :---------------: | ------------------: |
+| **ambient**:_object_       |      [light]      | [default](#ambient) |
+| **spot**:_object_          |    [spotLight]    |         [default]() |
+| **shadowMapSize**:_number_ |    [spotLight]    |                 256 |
+| **debug**                  | [SpotLightHelper] |               false |
+
+##### ambient
+
+- `color`: **0x5289d2**
+- `intensity`: **0.6**
+
+##### spot
+
+- `color`: **0x999999**
+- `intensity`: **0.9**
+- `position`: **{ x: 0, y: 15, z: 0 }**
 
 #### Default renderer config
 
@@ -171,6 +186,8 @@ container.appendChild(render.domElement);
 [fov]: https://threejs.org/docs/?q=camera#api/en/cameras/PerspectiveCamera.fov
 [far]: https://threejs.org/docs/?q=camera#api/en/cameras/PerspectiveCamera.far
 [light]: https://threejs.org/docs/?q=light#api/en/lights/AmbientLight
+[spotlight]: https://threejs.org/docs/#api/en/lights/SpotLight
+[spotlighthelper]: https://threejs.org/docs/#api/en/helpers/SpotLightHelper
 [webglrenderer]: https://threejs.org/docs/?q=renderer#api/en/renderers/WebGLRenderer
 [cannon-es]: https://www.npmjs.com/package/cannon-es
 [stats-js]: https://www.npmjs.com/package/stats-js

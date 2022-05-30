@@ -9,27 +9,33 @@ export default class Light {
   constructor(Scene: THREE.Scene, options: LightUniforms) {
     this.options = { ...config, ...options };
 
-    const { color, intensity, position, shadowMapSize } = this.options;
+    const { ambient, spot, shadowMapSize, debug } = this.options;
 
-    const light = new THREE.AmbientLight(color, 1);
+    const light = new THREE.AmbientLight(ambient.color, ambient.intensity);
     Scene.add(light);
 
-    const pointLight = new THREE.PointLight(color, intensity, 100);
-    pointLight.castShadow = true;
-    pointLight.position.setY(position.y);
-    Scene.add(pointLight);
+    const spotLight = new THREE.SpotLight(spot.color, spot.intensity, 100);
+    spotLight.castShadow = true;
+    spotLight.angle = (Math.PI / 180) * 10;
+    spotLight.penumbra = 1;
 
-    pointLight.shadow.mapSize.width = shadowMapSize;
-    pointLight.shadow.mapSize.height = shadowMapSize;
+    const { x, y, z } = spot.position;
+    spotLight.position.set(x, y, z);
+    Scene.add(spotLight);
 
-    // const helper = new THREE.PointLightHelper(pointLight);
-    // Scene.add(helper);
+    spotLight.shadow.mapSize.width = shadowMapSize;
+    spotLight.shadow.mapSize.height = shadowMapSize;
 
-    this.light = pointLight;
+    if (debug) {
+      const helper = new THREE.SpotLightHelper(spotLight);
+      Scene.add(helper);
+    }
+
+    this.light = spotLight;
   }
 
   update(position: THREE.Vector3) {
-    const { x, y, z } = this.options.position;
+    const { x, y, z } = this.options.spot.position;
     this.light.position.set(position.x + x, position.y + y, position.z + z);
   }
 }

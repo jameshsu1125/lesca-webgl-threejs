@@ -8,14 +8,21 @@ export declare type SkyUniforms = {
     azimuth: number;
 };
 export declare type LightUniforms = {
-    color: number;
-    intensity: number;
-    position: {
-        x: number;
-        y: number;
-        z: number;
+    ambient: {
+        color: number;
+        intensity: number;
+    };
+    spot: {
+        color: number;
+        intensity: number;
+        position: {
+            x: number;
+            y: number;
+            z: number;
+        };
     };
     shadowMapSize: number;
+    debug: Boolean;
 };
 export declare type CameraUniforms = {
     fov: number;
