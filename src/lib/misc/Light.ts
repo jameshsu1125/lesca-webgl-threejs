@@ -2,6 +2,16 @@ import * as THREE from 'three';
 import { light as config } from '../config';
 import { LightUniforms } from '../types';
 
+type TY = {
+  target: THREE.Mesh;
+  offsetY: number;
+};
+
+const defaultTY = {
+  target: new THREE.Mesh(),
+  offset: 15,
+};
+
 export default class Light {
   private options: LightUniforms;
   public light: THREE.PointLight;
@@ -36,7 +46,10 @@ export default class Light {
     this.light = spotLight;
   }
 
-  update(position: THREE.Vector3, offsetY = 15) {
-    this.light.position.set(position.x, position.y + offsetY, position.z);
+  update(options: TY) {
+    if (!options.target) console.warn('[lesca-webgl-threejs]Three is no target[Mesh] to follow.');
+    const opt = { ...defaultTY, ...options };
+    const { target, offsetY } = opt;
+    this.light.position.set(target.position.x, target.position.y + offsetY, target.position.z);
   }
 }
