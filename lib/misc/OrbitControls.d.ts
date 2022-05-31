@@ -1,8 +1,8 @@
 import { ControlsUniforms } from '../types';
 import * as THREE from 'three';
 declare type PAT = {
-    polar: Number;
-    azimuth: Number;
+    polar?: Number;
+    azimuth?: Number;
     target: THREE.Vector3;
 };
 export default class OrbitControls {

@@ -10,8 +10,8 @@ const degreeToradian = (degree: number) => {
 };
 
 type PAT = {
-  polar: Number;
-  azimuth: Number;
+  polar?: Number;
+  azimuth?: Number;
   target: THREE.Vector3;
 };
 
@@ -44,15 +44,15 @@ export default class OrbitControls {
     }
   }
 
-  fixed(config: PAT = { polar: 30, azimuth: 30, target: new THREE.Vector3(0, 0, 0) }) {
+  fixed(config: PAT = { target: new THREE.Vector3(0, 0, 0) }) {
     const { polar, azimuth, target } = config;
 
-    if (polar ?? false) {
+    if (polar !== undefined && polar !== null) {
       this.controls.maxPolarAngle = degreeToradian(90 + Number(polar));
       this.controls.minPolarAngle = degreeToradian(90 - Number(polar));
     }
 
-    if (azimuth ?? false) {
+    if (azimuth !== undefined && azimuth !== null) {
       this.controls.maxAzimuthAngle = degreeToradian(Number(azimuth));
       this.controls.minAzimuthAngle = degreeToradian(Number(azimuth));
     }
