@@ -46,12 +46,13 @@ export default class OrbitControls {
 
   fixed(config: PAT = { polar: 30, azimuth: 30, target: new THREE.Vector3(0, 0, 0) }) {
     const { polar, azimuth, target } = config;
-    if (polar) {
+
+    if (polar ?? false) {
       this.controls.maxPolarAngle = degreeToradian(90 + Number(polar));
       this.controls.minPolarAngle = degreeToradian(90 - Number(polar));
     }
 
-    if (azimuth) {
+    if (azimuth ?? false) {
       this.controls.maxAzimuthAngle = degreeToradian(Number(azimuth));
       this.controls.minAzimuthAngle = degreeToradian(Number(azimuth));
     }
