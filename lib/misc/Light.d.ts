@@ -7,6 +7,7 @@ declare type TY = {
 export default class Light {
     private options;
     light: THREE.PointLight;
+    taregt: THREE.Object3D<THREE.Event>;
     constructor(Scene: THREE.Scene, options: LightUniforms);
     update(options: TY): void;
 }

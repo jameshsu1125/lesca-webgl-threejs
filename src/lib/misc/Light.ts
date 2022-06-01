@@ -15,6 +15,7 @@ const defaultTY = {
 export default class Light {
   private options: LightUniforms;
   public light: THREE.PointLight;
+  public taregt: THREE.Object3D<THREE.Event>;
 
   constructor(Scene: THREE.Scene, options: LightUniforms) {
     this.options = { ...config, ...options };
@@ -30,6 +31,9 @@ export default class Light {
     spotLight.penumbra = 1;
     spotLight.distance = spot.far;
     spotLight.decay = 0.5;
+
+    this.taregt = spotLight.target;
+    Scene.add(this.taregt);
 
     const { x, y, z } = spot.position;
     spotLight.position.set(x, y, z);
@@ -51,5 +55,6 @@ export default class Light {
     const opt = { ...defaultTY, ...options };
     const { target, offsetY } = opt;
     this.light.position.set(target.position.x, target.position.y + offsetY, target.position.z);
+    this.taregt.position.set(target.position.x, target.position.y, target.position.z);
   }
 }
