@@ -8,7 +8,7 @@ import {
 } from './types';
 
 const camera: CameraUniforms = {
-  fov: 200,
+  zoom: 200,
   far: 75,
 };
 
