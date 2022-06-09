@@ -9,7 +9,7 @@ import {
 
 const camera: CameraUniforms = {
   zoom: 200,
-  far: 75,
+  far: 200,
 };
 
 // todo => https://threejs.org/examples/webgl_shaders_sky.html

@@ -33,7 +33,9 @@ export default class OrbitControls {
     this.controls.minAzimuthAngle = degreeToradian(azimuth.min);
 
     this.controls.minDistance = distance.min;
+    this.controls.minZoom = distance.min;
     this.controls.maxDistance = distance.max;
+    this.controls.maxZoom = distance.max;
 
     this.azimuthAngle = this.controls.getPolarAngle();
 
