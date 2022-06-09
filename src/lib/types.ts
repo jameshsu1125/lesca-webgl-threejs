@@ -28,7 +28,7 @@ export type LightUniforms = {
 };
 
 export type CameraUniforms = {
-  zoom: number;
+  fov: number;
   far: number;
   dom?: HTMLElement;
 };

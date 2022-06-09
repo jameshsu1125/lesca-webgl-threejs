@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 export const config = {
-  camera: { zoom: 200, far: 75 },
+  camera: { fov: 30, far: 75 },
   sky: {
     enabled: true,
     turbidity: 3.8,
@@ -11,7 +11,7 @@ export const config = {
     azimuth: 180,
   },
   controls: {
-    distance: { min: 13, max: 30 },
+    distance: { min: 13, max: 13 },
     polar: { min: -70, max: 70 },
     azimuth: { min: -Infinity, max: Infinity },
     default: {
