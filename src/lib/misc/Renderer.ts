@@ -23,10 +23,18 @@ export default class Renderer {
     renderer.physicallyCorrectLights = physicallyCorrectLights;
     renderer.outputEncoding = outputEncoding;
 
-    this.resize = (Camera: THREE.PerspectiveCamera) => {
+    this.resize = (Camera: THREE.OrthographicCamera, dom: HTMLElement) => {
       const rendererSetSize = () => {
         const { innerWidth, innerHeight } = window;
-        Camera.aspect = innerWidth / innerHeight;
+
+        const width: Number = dom instanceof HTMLElement ? dom.clientWidth : innerWidth;
+        const height: Number = dom instanceof HTMLElement ? dom.clientHeight : innerHeight;
+
+        Camera.left = Number(width) / -2;
+        Camera.right = Number(width) / 2;
+        Camera.top = Number(height) / 2;
+        Camera.bottom = Number(height) / -2;
+
         Camera.updateProjectionMatrix();
         renderer.setSize(innerWidth, innerHeight);
       };

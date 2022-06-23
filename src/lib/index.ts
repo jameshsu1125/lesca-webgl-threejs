@@ -39,7 +39,7 @@ export default class Webgl {
     this.camera = new Camera(this.options.camera).camera;
     this.light = new Light(this.scene, this.options.light);
     this.renderer = new Renderer(this.options.renderer);
-    this.renderer.resize(this.camera);
+    this.renderer.resize(this.camera, this.options.camera.dom);
     this.render = this.renderer.renderer;
     this.controls = new Control(this.camera, this.render, this.options.controls);
     this.clock = new THREE.Clock();
