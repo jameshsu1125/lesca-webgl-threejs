@@ -39,6 +39,7 @@ export default class Renderer {
         renderer.setSize(innerWidth, innerHeight);
       };
       rendererSetSize();
+      setTimeout(() => rendererSetSize(), 500);
       window.addEventListener('resize', rendererSetSize);
     };
 
