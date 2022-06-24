@@ -27,8 +27,8 @@ export default class Renderer {
       const rendererSetSize = () => {
         const { innerWidth, innerHeight } = window;
 
-        const width: Number = dom instanceof HTMLElement ? dom.clientWidth : innerWidth;
-        const height: Number = dom instanceof HTMLElement ? dom.clientHeight : innerHeight;
+        const width: number = dom instanceof HTMLElement ? dom.clientWidth : innerWidth;
+        const height: number = dom instanceof HTMLElement ? dom.clientHeight : innerHeight;
 
         Camera.left = Number(width) / -2;
         Camera.right = Number(width) / 2;
@@ -36,7 +36,7 @@ export default class Renderer {
         Camera.bottom = Number(height) / -2;
 
         Camera.updateProjectionMatrix();
-        renderer.setSize(innerWidth, innerHeight);
+        renderer.setSize(width || innerWidth, height || innerHeight);
       };
       rendererSetSize();
       setTimeout(() => rendererSetSize(), 500);
