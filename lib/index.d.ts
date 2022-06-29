@@ -20,5 +20,6 @@ export default class Webgl {
     stats: any;
     enterframe: any;
     constructor(options: Uniforms);
+    setFPS(fps: number): void;
     addCannonDebuger(): any;
 }

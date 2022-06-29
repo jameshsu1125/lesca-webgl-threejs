@@ -19,8 +19,6 @@ const Demo = () => {
       const cube = new THREE.Mesh(geometry, material);
       webgl.scene.add(cube);
 
-      console.log(webgl);
-
       webgl.enterframe.add(() => {
         webgl.stats.end();
       });

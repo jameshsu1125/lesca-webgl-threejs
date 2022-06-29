@@ -80,6 +80,10 @@ export default class Webgl {
     Frame.play();
   }
 
+  setFPS(fps: number) {
+    Frame.setFPS(fps);
+  }
+
   addCannonDebuger() {
     const cannonEsDebuger = new CannonEsDebuger(this.scene, this.world.bodies);
     return cannonEsDebuger;
