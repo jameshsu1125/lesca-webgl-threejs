@@ -5,7 +5,10 @@ import {
   SkyUniforms,
   LightUniforms,
   RendererUniforms,
+  FPS,
 } from './types';
+
+const fps: FPS = 0;
 
 const camera: CameraUniforms = {
   zoom: 200,
@@ -63,6 +66,7 @@ const physics = false;
 const stats = false;
 
 const Config = {
+  fps,
   camera,
   sky,
   controls,

@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 export const config = {
+  fps: 30,
   camera: { zoom: 200, far: 200 },
   sky: {
     enabled: true,

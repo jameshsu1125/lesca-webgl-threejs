@@ -6,6 +6,7 @@ declare const light: LightUniforms;
 declare const renderer: RendererUniforms;
 declare const physics = false;
 declare const Config: {
+    fps: number;
     camera: CameraUniforms;
     sky: SkyUniforms;
     controls: ControlsUniforms;

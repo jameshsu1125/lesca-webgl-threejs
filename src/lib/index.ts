@@ -8,8 +8,8 @@ import PhysicsWorld from './misc/physicWorld';
 import Renderer from './misc/Renderer';
 import Sky from './misc/Sky';
 import { Uniforms } from './types';
+import Frame from 'lesca-enterframe';
 
-const Frame = require('lesca-enterframe').default;
 const Statsjs = require('stats-js');
 const CannonEsDebuger = require('cannon-es-debugger');
 
@@ -75,6 +75,7 @@ export default class Webgl {
 
     this.enterframe = Frame;
 
+    Frame.setFPS(this.options.fps);
     Frame.add(this.update);
     Frame.play();
   }

@@ -1,3 +1,5 @@
+export type FPS = number;
+
 export type SkyUniforms = {
   enabled: boolean;
   turbidity: number;
@@ -57,6 +59,7 @@ export type RendererUniforms = {
 export type Uniforms = {
   physics: boolean;
   stats: boolean;
+  fps: FPS;
   sky: SkyUniforms;
   light: LightUniforms;
   camera: CameraUniforms;

@@ -24,6 +24,7 @@ npm install lesca-webgl-threejs --save
 import Webgl from 'lesca-webgl-threejs';
 
 const config = {
+  fps: 0,
   camera: { zoom: 30, far: 75 },
   sky: {
     enabled: true,
@@ -83,6 +84,7 @@ container.appendChild(render.domElement);
 
 | method                 |         description         |                                 default |
 | :--------------------- | :-------------------------: | --------------------------------------: |
+| .**fps**:_number_      |           set fps           |                                       0 |
 | .**camera**:_object_   | [OrthographicCamera] setup. |       [default](#default-camera-config) |
 | .**sky**:_object_      |        [Sky] setup.         | [default](#camera-default-config-value) |
 | .**controls**:_object_ |   [orbitcontrols] setep.    |          [default](#default-sky-config) |
