@@ -15,7 +15,7 @@ const defaultTY = {
 export default class Light {
   private options: LightUniforms;
   public light: THREE.PointLight;
-  public taregt: THREE.Object3D<THREE.Event>;
+  // public target: THREE.Object3D<THREE.Event>;
 
   constructor(Scene: THREE.Scene, options: LightUniforms) {
     this.options = { ...config, ...options };
@@ -25,15 +25,15 @@ export default class Light {
     const light = new THREE.AmbientLight(ambient.color, ambient.intensity);
     Scene.add(light);
 
-    const spotLight = new THREE.SpotLight(spot.color, spot.intensity, spot.far);
+    const spotLight = new THREE.PointLight(spot.color, spot.intensity, spot.far);
     spotLight.castShadow = true;
-    spotLight.angle = Math.PI * 0.12;
-    spotLight.penumbra = 1;
+    // spotLight.angle = Math.PI * 0.12;
+    // spotLight.penumbra = 1;
     spotLight.distance = spot.far;
     spotLight.decay = 0.5;
 
-    this.taregt = spotLight.target;
-    Scene.add(this.taregt);
+    // this.target = spotLight.target;
+    // Scene.add(this.target);
 
     const { x, y, z } = spot.position;
     spotLight.position.set(x, y, z);
@@ -43,7 +43,7 @@ export default class Light {
     spotLight.shadow.mapSize.height = shadowMapSize;
 
     if (debug) {
-      const helper = new THREE.SpotLightHelper(spotLight);
+      const helper = new THREE.PointLightHelper(spotLight);
       Scene.add(helper);
     }
 
@@ -55,6 +55,6 @@ export default class Light {
     const opt = { ...defaultTY, ...options };
     const { target, offsetY } = opt;
     this.light.position.set(target.position.x, target.position.y + offsetY, target.position.z);
-    this.taregt.position.set(target.position.x, target.position.y, target.position.z);
+    // this.target.position.set(target.position.x, target.position.y, target.position.z);
   }
 }

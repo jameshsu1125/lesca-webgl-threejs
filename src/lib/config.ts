@@ -11,7 +11,7 @@ import {
 const fps: FPS = 0;
 
 const camera: CameraUniforms = {
-  zoom: 200,
+  fov: 75,
   far: 200,
 };
 

@@ -11,17 +11,17 @@ export default class Renderer {
 
   constructor(options: RendererUniforms) {
     this.options = { ...config, ...options };
-    const { alpha, shadowType, exposure, outputEncoding, physicallyCorrectLights } = this.options;
+    const { alpha, shadowType, exposure, outputEncoding } = this.options;
 
     const renderer = new THREE.WebGLRenderer({ alpha });
 
     renderer.setPixelRatio(devicePixelRatio);
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.shadowMap.enabled = true;
-    renderer.shadowMap.type = shadowType;
+    renderer.shadowMap.type = shadowType as THREE.ShadowMapType;
     renderer.toneMappingExposure = exposure;
-    renderer.physicallyCorrectLights = physicallyCorrectLights;
-    renderer.outputEncoding = outputEncoding;
+    // renderer.physicallyCorrectLights = physicallyCorrectLights;
+    // renderer.outputEncoding = outputEncoding;
 
     this.resize = (Camera: THREE.OrthographicCamera, dom: HTMLElement) => {
       const rendererSetSize = () => {

@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 export const config = {
   fps: 30,
-  camera: { zoom: 200, far: 200 },
+  camera: { fov: 75, far: 200 },
   sky: {
     enabled: true,
     turbidity: 3.8,
