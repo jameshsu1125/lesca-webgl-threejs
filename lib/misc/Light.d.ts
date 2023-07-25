@@ -1,13 +1,16 @@
 import * as THREE from 'three';
 import { LightUniforms } from '../types';
-declare type TY = {
+type TY = {
     target: THREE.Mesh;
     offsetY: number;
 };
 export default class Light {
     private options;
-    light: THREE.PointLight;
-    taregt: THREE.Object3D<THREE.Event>;
+    lights: {
+        point?: THREE.PointLight;
+        spot?: THREE.SpotLight;
+    };
+    target: THREE.Object3D<THREE.Event> | undefined;
     constructor(Scene: THREE.Scene, options: LightUniforms);
     update(options: TY): void;
 }

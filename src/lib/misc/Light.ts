@@ -14,47 +14,76 @@ const defaultTY = {
 
 export default class Light {
   private options: LightUniforms;
-  public light: THREE.PointLight;
-  // public target: THREE.Object3D<THREE.Event>;
+  public lights: {
+    point?: THREE.PointLight;
+    spot?: THREE.SpotLight;
+  };
+  public target: THREE.Object3D<THREE.Event> | undefined;
 
   constructor(Scene: THREE.Scene, options: LightUniforms) {
     this.options = { ...config, ...options };
+    this.lights = {};
+    this.target = undefined;
 
-    const { ambient, spot, shadowMapSize, debug } = this.options;
+    const { ambient, spot, point, shadowMapSize, debug } = this.options;
 
     const light = new THREE.AmbientLight(ambient.color, ambient.intensity);
     Scene.add(light);
 
-    const spotLight = new THREE.PointLight(spot.color, spot.intensity, spot.far);
-    spotLight.castShadow = true;
-    // spotLight.angle = Math.PI * 0.12;
-    // spotLight.penumbra = 1;
-    spotLight.distance = spot.far;
-    spotLight.decay = 0.5;
+    if (point) {
+      const pointLight = new THREE.PointLight(point.color, point.intensity, point.distance);
+      pointLight.castShadow = true;
+      pointLight.decay = point.decay;
 
-    // this.target = spotLight.target;
-    // Scene.add(this.target);
+      pointLight.shadow.mapSize.width = shadowMapSize;
+      pointLight.shadow.mapSize.height = shadowMapSize;
 
-    const { x, y, z } = spot.position;
-    spotLight.position.set(x, y, z);
-    Scene.add(spotLight);
+      const { x, y, z } = point.position;
+      pointLight.position.set(x, y, z);
 
-    spotLight.shadow.mapSize.width = shadowMapSize;
-    spotLight.shadow.mapSize.height = shadowMapSize;
+      Scene.add(pointLight);
+      this.lights.point = pointLight;
 
-    if (debug) {
-      const helper = new THREE.PointLightHelper(spotLight);
-      Scene.add(helper);
+      if (debug) {
+        const helper = new THREE.PointLightHelper(pointLight);
+        Scene.add(helper);
+      }
     }
 
-    this.light = spotLight;
+    if (spot) {
+      const spotLight = new THREE.SpotLight(spot.color, spot.intensity, spot.distance);
+      spotLight.castShadow = true;
+      spotLight.angle = Math.PI * 0.12;
+      spotLight.penumbra = 1;
+      spotLight.decay = point.decay;
+      spotLight.shadow.mapSize.width = shadowMapSize;
+      spotLight.shadow.mapSize.height = shadowMapSize;
+
+      const { x, y, z } = spot.position;
+      spotLight.position.set(x, y, z);
+
+      Scene.add(spotLight);
+      this.target = spotLight.target;
+      this.lights.spot = spotLight;
+
+      if (debug) {
+        const helper = new THREE.SpotLightHelper(spotLight);
+        Scene.add(helper);
+      }
+    }
   }
 
   update(options: TY) {
     if (!options.target) console.warn('[lesca-webgl-threejs]Three is no target[Mesh] to follow.');
     const opt = { ...defaultTY, ...options };
     const { target, offsetY } = opt;
-    this.light.position.set(target.position.x, target.position.y + offsetY, target.position.z);
-    // this.target.position.set(target.position.x, target.position.y, target.position.z);
+    const { spot, point } = this.lights;
+    if (spot) {
+      spot.position.set(target.position.x, target.position.y + offsetY, target.position.z);
+      this.target?.position.set(target.position.x, target.position.y, target.position.z);
+    }
+    if (point) {
+      point.position.set(target.position.x, target.position.y + offsetY, target.position.z);
+    }
   }
 }

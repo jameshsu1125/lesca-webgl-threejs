@@ -1,6 +1,6 @@
 import { ControlsUniforms } from '../types';
 import * as THREE from 'three';
-declare type PAT = {
+type PAT = {
     polar?: Number;
     azimuth?: Number;
     target: THREE.Vector3;

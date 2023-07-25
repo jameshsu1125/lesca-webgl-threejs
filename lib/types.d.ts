@@ -1,5 +1,5 @@
-export declare type FPS = number;
-export declare type SkyUniforms = {
+export type FPS = number;
+export type SkyUniforms = {
     enabled: boolean;
     turbidity: number;
     rayleigh: number;
@@ -8,15 +8,29 @@ export declare type SkyUniforms = {
     inclination: number;
     azimuth: number;
 };
-export declare type LightUniforms = {
+export type LightUniforms = {
     ambient: {
         color: number;
         intensity: number;
     };
+    point: {
+        color: number;
+        intensity: number;
+        distance: number;
+        decay: number;
+        position: {
+            x: number;
+            y: number;
+            z: number;
+        };
+    };
     spot: {
         color: number;
         intensity: number;
-        far: number;
+        distance: number;
+        decay: number;
+        angle: number;
+        penumbra: number;
         position: {
             x: number;
             y: number;
@@ -26,12 +40,12 @@ export declare type LightUniforms = {
     shadowMapSize: number;
     debug: Boolean;
 };
-export declare type CameraUniforms = {
-    zoom: number;
+export type CameraUniforms = {
+    fov: number;
     far: number;
     dom?: HTMLElement;
 };
-export declare type ControlsUniforms = {
+export type ControlsUniforms = {
     distance: {
         min: number;
         max: number;
@@ -52,14 +66,14 @@ export declare type ControlsUniforms = {
     enabled: boolean;
     panEasing: number;
 };
-export declare type RendererUniforms = {
+export type RendererUniforms = {
     alpha: false;
     shadowType: number;
     exposure: number;
     outputEncoding: number;
     physicallyCorrectLights: boolean;
 };
-export declare type Uniforms = {
+export type Uniforms = {
     physics: boolean;
     stats: boolean;
     fps: FPS;

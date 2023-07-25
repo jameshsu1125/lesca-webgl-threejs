@@ -15,10 +15,24 @@ export type LightUniforms = {
     color: number;
     intensity: number;
   };
+  point: {
+    color: number;
+    intensity: number;
+    distance: number;
+    decay: number;
+    position: {
+      x: number;
+      y: number;
+      z: number;
+    };
+  };
   spot: {
     color: number;
     intensity: number;
-    far: number;
+    distance: number;
+    decay: number;
+    angle: number;
+    penumbra: number;
     position: {
       x: number;
       y: number;
