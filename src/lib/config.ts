@@ -19,7 +19,7 @@ const camera: CameraUniforms = {
 
 // todo => https://threejs.org/examples/webgl_shaders_sky.html
 const sky: SkyUniforms = {
-  enabled: true,
+  enabled: false,
   turbidity: 0,
   rayleigh: 0.079,
   mieCoefficient: 0.023,

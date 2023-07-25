@@ -29,16 +29,16 @@ export const config = {
       color: 0x5289d2,
       intensity: 0.6,
     },
-    point: {
-      color: 0xff0000,
-      intensity: 1,
-      position: { x: 0, y: 15, z: 0 },
-    },
-    // spot: {
-    //   color: 0x999999,
-    //   intensity: 0.9,
+    // point: {
+    //   color: 0xff0000,
+    //   intensity: 1,
     //   position: { x: 0, y: 15, z: 0 },
     // },
+    spot: {
+      color: 0x999999,
+      intensity: 0.9,
+      position: { x: 0, y: 15, z: 0 },
+    },
     shadowMapSize: 256,
     debug: true,
   },

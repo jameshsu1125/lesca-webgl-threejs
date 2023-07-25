@@ -38,6 +38,15 @@ module.exports = {
           },
         ],
       },
+      {
+        test: /\.(glb)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: { name: 'glb/[path][name].[ext]', context: 'src/docs' },
+          },
+        ],
+      },
     ],
   },
   plugins: [

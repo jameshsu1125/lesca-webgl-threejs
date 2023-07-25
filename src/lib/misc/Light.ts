@@ -52,12 +52,12 @@ export default class Light {
 
     if (options.spot) {
       const spotLight = new THREE.SpotLight(spot.color, spot.intensity, spot.distance);
-      spotLight.castShadow = true;
-      spotLight.angle = Math.PI * 0.12;
-      spotLight.penumbra = 1;
-      spotLight.decay = point.decay;
-      spotLight.shadow.mapSize.width = shadowMapSize;
-      spotLight.shadow.mapSize.height = shadowMapSize;
+      //  spotLight.castShadow = true;
+      // spotLight.angle = Math.PI * 0.12;
+      // spotLight.penumbra = 1;
+      // spotLight.decay = point.decay;
+      // spotLight.shadow.mapSize.width = shadowMapSize;
+      // spotLight.shadow.mapSize.height = shadowMapSize;
 
       const { x, y, z } = spot.position;
       spotLight.position.set(x, y, z);
