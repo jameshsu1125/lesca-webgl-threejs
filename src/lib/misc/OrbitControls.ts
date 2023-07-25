@@ -5,7 +5,7 @@ import { controls as config } from '../config';
 const Orbit = require('lesca-threejs-orbitcontrols').OrbitControls;
 const Controls = new Orbit(THREE);
 
-const degreeToradian = (degree: number) => {
+const degreeToRadian = (degree: number) => {
   return (Math.PI / 180) * degree;
 };
 
@@ -26,11 +26,11 @@ export default class OrbitControls {
     this.controls = new Controls(Camera, Renderer.domElement);
     this.controls.enabled = enabled;
 
-    this.controls.maxPolarAngle = degreeToradian(90 - polar.min);
-    this.controls.minPolarAngle = degreeToradian(90 - polar.max);
+    this.controls.maxPolarAngle = degreeToRadian(90 - polar.min);
+    this.controls.minPolarAngle = degreeToRadian(90 - polar.max);
 
-    this.controls.maxAzimuthAngle = degreeToradian(azimuth.max);
-    this.controls.minAzimuthAngle = degreeToradian(azimuth.min);
+    this.controls.maxAzimuthAngle = degreeToRadian(azimuth.max);
+    this.controls.minAzimuthAngle = degreeToRadian(azimuth.min);
 
     this.controls.minDistance = distance.min;
     this.controls.minZoom = distance.min;
@@ -41,8 +41,8 @@ export default class OrbitControls {
 
     if (this.options.default) {
       const { polar, azimuth } = this.options.default;
-      if (polar !== undefined) this.controls.setPolarAngle(degreeToradian(90 - polar));
-      if (azimuth !== undefined) this.controls.setAzimuthalAngle(degreeToradian(azimuth));
+      if (polar !== undefined) this.controls.setPolarAngle(degreeToRadian(90 - polar));
+      if (azimuth !== undefined) this.controls.setAzimuthalAngle(degreeToRadian(azimuth));
     }
   }
 
@@ -50,13 +50,13 @@ export default class OrbitControls {
     const { polar, azimuth, target } = config;
 
     if (polar !== undefined && polar !== null) {
-      this.controls.maxPolarAngle = degreeToradian(90 + Number(polar));
-      this.controls.minPolarAngle = degreeToradian(90 - Number(polar));
+      this.controls.maxPolarAngle = degreeToRadian(90 + Number(polar));
+      this.controls.minPolarAngle = degreeToRadian(90 - Number(polar));
     }
 
     if (azimuth !== undefined && azimuth !== null) {
-      this.controls.maxAzimuthAngle = degreeToradian(Number(azimuth));
-      this.controls.minAzimuthAngle = degreeToradian(Number(azimuth));
+      this.controls.maxAzimuthAngle = degreeToRadian(Number(azimuth));
+      this.controls.minAzimuthAngle = degreeToRadian(Number(azimuth));
     }
 
     this.lookAt(target);
@@ -71,7 +71,7 @@ export default class OrbitControls {
 
     this.controls.target.set(mesh.position.x, mesh.position.y + height, mesh.position.z);
     this.azimuthAngle +=
-      (mesh.rotation.y + degreeToradian(offsetAzimuth) - this.azimuthAngle) / panEasing;
+      (mesh.rotation.y + degreeToRadian(offsetAzimuth) - this.azimuthAngle) / panEasing;
 
     this.controls.maxAzimuthAngle = this.azimuthAngle;
     this.controls.minAzimuthAngle = this.azimuthAngle;
@@ -87,7 +87,7 @@ export default class OrbitControls {
   unlock() {
     const { polar } = this.options;
 
-    this.controls.maxPolarAngle = degreeToradian(90 - polar.min);
-    this.controls.minPolarAngle = degreeToradian(90 - polar.max);
+    this.controls.maxPolarAngle = degreeToRadian(90 - polar.min);
+    this.controls.minPolarAngle = degreeToRadian(90 - polar.max);
   }
 }

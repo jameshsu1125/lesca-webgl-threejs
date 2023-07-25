@@ -8,7 +8,7 @@
 
 # Why use it?
 
-It's can build full page webgl easily. inculde camera light orbitContorls sky sun.
+It's can build full page webgl easily. include camera light orbitControls sky sun.
 
 #### [Live Demo](https://jameshsu1125.github.io/lesca-webgl-threejs/)
 
@@ -22,10 +22,11 @@ npm install lesca-webgl-threejs --save
 
 ```javascript
 import Webgl from 'lesca-webgl-threejs';
+import { CameraType } from 'lesca-webgl-threejs/types';
 
 const config = {
   fps: 0,
-  camera: { zoom: 30, far: 75 },
+  camera: { zoom: 30, far: 75, type: CameraType.perspective },
   sky: {
     enabled: true,
     turbidity: 3.8,
@@ -97,19 +98,20 @@ container.appendChild(render.domElement);
 | .**fps**:_number_      |           set fps           |                                       0 |
 | .**camera**:_object_   | [OrthographicCamera] setup. |       [default](#default-camera-config) |
 | .**sky**:_object_      |        [Sky] setup.         | [default](#camera-default-config-value) |
-| .**controls**:_object_ |   [orbitcontrols] setep.    |          [default](#default-sky-config) |
+| .**controls**:_object_ |   [orbitControls] setup.    |          [default](#default-sky-config) |
 | .**light**:_object_    |       [light] setup.        |        [default](#default-light-config) |
-| .**renderer**:_object_ |   [webglrenderer] setup.    |     [default](#default-renderer-config) |
+| .**renderer**:_object_ |   [webglRenderer] setup.    |     [default](#default-renderer-config) |
 | .**physics**:_object_  |     [cannon-es] setup.      |      [default](#default-physics-config) |
 | .**stats**:_object_    |      [stats-js] setup.      |        [default](#default-stats-config) |
 
 #### Default camera config
 
-| key                   |      docs      | default |
-| :-------------------- | :------------: | ------: |
-| **zoom**:_number_     |     [zoom]     |      30 |
-| **far**:_number_      |     [far]      |     200 |
-| **dom**:_HTMLElement_ | HTML container |         |
+| key                    |            docs             |     default |
+| :--------------------- | :-------------------------: | ----------: |
+| **zoom**:_number_      |           [zoom]            |          30 |
+| **far**:_number_       |            [far]            |         200 |
+| **dom**:_HTMLElement_  |       HTML container        |             |
+| **type**:_enum:number_ | orthographic or perspective | perspective |
 
 #### Default sky config
 
@@ -127,11 +129,11 @@ container.appendChild(render.domElement);
 
 | key                        |      docs       |                       default |
 | :------------------------- | :-------------: | ----------------------------: |
-| **enabled**:_boolean_      | [orbitcontrols] |                          true |
-| **distance**:_object_      | [orbitcontrols] |                min:30, max:30 |
-| **polar**:_object_         | [orbitcontrols] |                min:35, max:35 |
-| **azimuth**:_object_       | [orbitcontrols] | min: -Infinity, max: Infinity |
-| **default**:_object_       | [orbitcontrols] |           polor:0, azimuth: 0 |
+| **enabled**:_boolean_      | [orbitControls] |                          true |
+| **distance**:_object_      | [orbitControls] |                min:30, max:30 |
+| **polar**:_object_         | [orbitControls] |                min:35, max:35 |
+| **azimuth**:_object_       | [orbitControls] | min: -Infinity, max: Infinity |
+| **default**:_object_       | [orbitControls] |           polar:0, azimuth: 0 |
 | **offsetAzimuth**:_number_ |     number      |                             0 |
 | **panEasing**:_number_     |     number      |                           100 |
 
@@ -139,7 +141,7 @@ container.appendChild(render.domElement);
 
 | function Name                                   |            description             |                                parameters                                | return |
 | :---------------------------------------------- | :--------------------------------: | :----------------------------------------------------------------------: | -----: |
-| .**fixed**(_Object_)                            |      Fixed angle perspective       | { **polor**:_Number_, **azimuth**:_number_, **taregt**: _THREE.Vector3_} |   void |
+| .**fixed**(_Object_)                            |      Fixed angle perspective       | { **polar**:_Number_, **azimuth**:_number_, **target**: _THREE.Vector3_} |   void |
 | .**lookAt**(vec:_THREE.Vector3_)                |      focus on a target point       |                         **vec**:_THREE.Vector3_                          |   void |
 | .**chase**(mesh: _THREE.Mesh_, height:_number_) | camera will follow target smoothly |                         **mesh**:_THREE.vector3_                         |   void |
 | .**lock**()                                     |            lock camera             |                                                                          |   void |
@@ -151,6 +153,7 @@ container.appendChild(render.domElement);
 | :------------------------- | :---------------: | ------------------: |
 | **ambient**:_object_       |      [light]      | [default](#ambient) |
 | **spot**:_object_          |    [spotLight]    |         [default]() |
+| **point**:_object_         |   [pointLight]    |         [default]() |
 | **shadowMapSize**:_number_ |    [spotLight]    |                 256 |
 | **debug**                  | [SpotLightHelper] |               false |
 
@@ -164,6 +167,18 @@ container.appendChild(render.domElement);
 - `color`: **0x999999**
 - `intensity`: **0.9**
 - `position`: **{ x: 0, y: 15, z: 0 }**
+- `distance`: **3**
+- `decay`: **0.5**
+- `angle`: **Math.PI \* 0.12**
+- `penumbra`: **1**
+
+##### point
+
+- `color`: **0x999999**
+- `intensity`: **0.9**
+- `distance`: **3**
+- `position`: **{ x: 0, y: 15, z: 0 }**
+- `decay`: **0.5**
 
 #### Default renderer config
 
@@ -193,14 +208,17 @@ container.appendChild(render.domElement);
 - maintain if necessary
 
 [eslint]: https://eslint.org/
-[orbitcontrols]: https://threejs.org/docs/#examples/en/controls/OrbitControls
-[orthographiccamera]: https://threejs.org/docs/?q=OrthographicCamera#api/en/cameras/OrthographicCamera
+[orbitControls]: https://threejs.org/docs/#examples/en/controls/OrbitControls
+[orthographicCamera]: https://threejs.org/docs/?q=OrthographicCamera#api/en/cameras/OrthographicCamera
+[perspectivecamera]: https://threejs.org/docs/#api/en/cameras/PerspectiveCamera
 [sky]: https://threejs.org/examples/webgl_shaders_sky.html
 [zoom]: https://threejs.org/docs/?q=OrthographicCamera#api/en/cameras/OrthographicCamera.zoom
 [far]: https://threejs.org/docs/?q=OrthographicCamera#api/en/cameras/OrthographicCamera.far
 [light]: https://threejs.org/docs/?q=light#api/en/lights/AmbientLight
-[spotlight]: https://threejs.org/docs/#api/en/lights/SpotLight
+[spotLight]: https://threejs.org/docs/#api/en/lights/SpotLight
+[pointLight]: https://threejs.org/docs/#api/en/lights/PointLight
 [spotlighthelper]: https://threejs.org/docs/#api/en/helpers/SpotLightHelper
-[webglrenderer]: https://threejs.org/docs/?q=renderer#api/en/renderers/WebGLRenderer
+[pointlighthelper]: https://threejs.org/docs/#api/en/helpers/PointLightHelper
+[webglRenderer]: https://threejs.org/docs/?q=renderer#api/en/renderers/WebGLRenderer
 [cannon-es]: https://www.npmjs.com/package/cannon-es
 [stats-js]: https://www.npmjs.com/package/stats-js
