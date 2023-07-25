@@ -43,10 +43,16 @@ export type LightUniforms = {
   debug: Boolean;
 };
 
+export enum CameraType {
+  perspective = 0,
+  orthographic = 1,
+}
+
 export type CameraUniforms = {
   fov: number;
   far: number;
   dom?: HTMLElement;
+  type: CameraType;
 };
 
 export type ControlsUniforms = {

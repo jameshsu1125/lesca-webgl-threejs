@@ -1,6 +1,6 @@
 {
   "name": "lesca-webgl-threejs",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "It's can build full page webGL easily.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -15,8 +15,6 @@
   },
   "keywords": [
     "lesca",
-    "衝康吉",
-    "jameshsu1125",
     "threejs",
     "webgl"
   ],

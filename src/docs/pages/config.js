@@ -1,7 +1,8 @@
 import * as THREE from 'three';
+import { CameraType } from '../../lib/types';
 export const config = {
   fps: 30,
-  camera: { fov: 75, far: 200 },
+  camera: { fov: 20, far: 1000, type: CameraType.orthographic },
   sky: {
     enabled: true,
     turbidity: 3.8,
@@ -12,7 +13,7 @@ export const config = {
     azimuth: 180,
   },
   controls: {
-    distance: { min: 200, max: 200 },
+    distance: { min: 10, max: 200 },
     polar: { min: -70, max: 70 },
     azimuth: { min: -Infinity, max: Infinity },
     default: {

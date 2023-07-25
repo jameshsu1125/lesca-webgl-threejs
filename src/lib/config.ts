@@ -6,6 +6,7 @@ import {
   LightUniforms,
   RendererUniforms,
   FPS,
+  CameraType,
 } from './types';
 
 const fps: FPS = 0;
@@ -13,6 +14,7 @@ const fps: FPS = 0;
 const camera: CameraUniforms = {
   fov: 75,
   far: 200,
+  type: CameraType.perspective,
 };
 
 // todo => https://threejs.org/examples/webgl_shaders_sky.html
