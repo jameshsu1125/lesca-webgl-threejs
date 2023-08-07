@@ -1,5 +1,6 @@
 import { Button, ButtonGroup } from '@mui/material';
 import { useEffect, useRef } from 'react';
+import * as CANNON from 'cannon-es';
 import * as THREE from 'three';
 import Webgl from '../../lib/';
 import { config } from './config';
@@ -15,30 +16,52 @@ const Demo = () => {
     if (!webglRef) {
       config.camera.target = container.current;
       const webgl = new Webgl(config);
+      const debuger = webgl.addCannonDebuger();
 
-      const geometry = new THREE.BoxGeometry();
-      const material = new THREE.MeshLambertMaterial({ color: 0x00ff00 });
-      const cube = new THREE.Mesh(geometry, material);
-      webgl.scene.add(cube);
+      const { scene, physicsImpactMaterial, physicsStaticMaterial, world, enterframe } = webgl;
 
-      GlbLoader(Avatar).then((e) => {
-        const { model, mixers, gltf } = e;
+      // Floor;
+      // const floorGeometry = new THREE.PlaneBufferGeometry(300, 300, 100, 100);
+      // floorGeometry.rotateX(-Math.PI / 2);
+      // const material = new THREE.MeshLambertMaterial({ color: 0xdddddd });
+      // const floor = new THREE.Mesh(floorGeometry, material);
+      // floor.receiveShadow = true;
+      // scene.add(floor);
 
-        const scale = 1;
-        model.scale.set(scale, scale, scale);
-        webgl.scene.add(model);
+      const groundShape = new CANNON.Plane();
+      const groundBody = new CANNON.Body({ mass: 0, material: physicsStaticMaterial });
+      groundBody.addShape(groundShape);
+      groundBody.quaternion.setFromEuler(-Math.PI / 2, 0, 0);
+      world.addBody(groundBody);
 
-        console.log(e);
+      const radius = 1;
+      const sphereShape = new CANNON.Sphere(radius);
+      const sphereBody = new CANNON.Body({ mass: 1, material: physicsStaticMaterial });
+      sphereBody.addShape(sphereShape);
+      sphereBody.position.set(0, 3, 0);
+      sphereBody.linearDamping = 0.9;
+      world.addBody(sphereBody);
 
-        // animation clip update
-        webgl.enterframe.add(() => {
-          // =>  same requestAnimationFrame
-          const delta = webgl.clock.getDelta();
-
-          mixers[0].update(delta);
-          webgl.stats.end();
-        });
+      enterframe.add(() => {
+        debuger.update();
       });
+
+      // GlbLoader(Avatar).then((e) => {
+      //   const { model, mixers, gltf } = e;
+
+      //   const scale = 1;
+      //   model.scale.set(scale, scale, scale);
+      //   // webgl.scene.add(model);
+
+      //   // animation clip update
+      //   webgl.enterframe.add(() => {
+      //     // =>  same requestAnimationFrame
+      //     const delta = webgl.clock.getDelta();
+
+      //     mixers[0].update(delta);
+      //     webgl.stats.end();
+      //   });
+      // });
 
       webglRef = webgl;
     }

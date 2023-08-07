@@ -11,7 +11,7 @@ import { Uniforms } from './types';
 import Frame from 'lesca-enterframe';
 
 const Statsjs = require('stats-js');
-const CannonEsDebuger = require('cannon-es-debugger');
+const CannonEsDebuger = require('cannon-es-debugger').default;
 
 export default class Webgl {
   private options: Uniforms;
@@ -85,7 +85,7 @@ export default class Webgl {
   }
 
   addCannonDebuger() {
-    const cannonEsDebuger = new CannonEsDebuger(this.scene, this.world.bodies);
+    const cannonEsDebuger = new CannonEsDebuger(this.scene, this.world);
     return cannonEsDebuger;
   }
 }
