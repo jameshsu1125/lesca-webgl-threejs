@@ -9,21 +9,33 @@ const degreeToRadian = (degree: number) => {
   return (Math.PI / 180) * degree;
 };
 
+const radianToDegree = (radian: number) => {
+  return radian / (Math.PI / 180);
+};
+
 type PAT = {
-  polar?: Number;
-  azimuth?: Number;
+  polar?: number;
+  azimuth?: number;
   target: THREE.Vector3;
+};
+
+type PAD = {
+  polar?: number;
+  azimuth?: number;
+  distance?: number;
 };
 
 export default class OrbitControls {
   private options: ControlsUniforms;
   public controls: any;
   public azimuthAngle: number;
+  private camera: THREE.Camera;
 
   constructor(Camera: THREE.Camera, Renderer: THREE.WebGLRenderer, options: ControlsUniforms) {
     this.options = { ...config, ...options };
     const { distance, polar, azimuth, enabled } = this.options;
     this.controls = new Controls(Camera, Renderer.domElement);
+    this.camera = Camera;
     this.controls.enabled = enabled;
 
     this.controls.maxPolarAngle = degreeToRadian(90 - polar.min);
@@ -60,6 +72,36 @@ export default class OrbitControls {
     }
 
     this.lookAt(target);
+  }
+
+  getDistance() {
+    const { target } = this.controls;
+    const { x: x1, y: y1, z: z1 } = target;
+    const { x: x2, y: y2, z: z2 } = this.camera.position;
+    return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2) + Math.pow(z2 - z1, 2));
+  }
+
+  get() {
+    const polar = 90 - radianToDegree(this.controls.getPolarAngle());
+    const azimuth = radianToDegree(this.controls.getAzimuthalAngle());
+    const distance = this.getDistance();
+    return { polar, azimuth, distance };
+  }
+
+  set(config: PAD) {
+    const { polar, azimuth, distance } = config;
+    if (polar) {
+      this.controls.maxPolarAngle = degreeToRadian(90 - polar);
+      this.controls.minPolarAngle = degreeToRadian(90 - polar);
+    }
+    if (azimuth) {
+      this.controls.maxAzimuthAngle = degreeToRadian(azimuth);
+      this.controls.minAzimuthAngle = degreeToRadian(azimuth);
+    }
+    if (distance) {
+      this.controls.minDistance = distance;
+      this.controls.maxDistance = distance;
+    }
   }
 
   lookAt(vec: THREE.Vector3 = new THREE.Vector3(0, 0, 0)) {

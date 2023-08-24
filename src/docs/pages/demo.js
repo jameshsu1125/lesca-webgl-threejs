@@ -21,12 +21,12 @@ const Demo = () => {
       const { scene, physicsImpactMaterial, physicsStaticMaterial, world, enterframe } = webgl;
 
       // Floor;
-      // const floorGeometry = new THREE.PlaneBufferGeometry(300, 300, 100, 100);
-      // floorGeometry.rotateX(-Math.PI / 2);
-      // const material = new THREE.MeshLambertMaterial({ color: 0xdddddd });
-      // const floor = new THREE.Mesh(floorGeometry, material);
-      // floor.receiveShadow = true;
-      // scene.add(floor);
+      const floorGeometry = new THREE.PlaneBufferGeometry(300, 300, 100, 100);
+      floorGeometry.rotateX(-Math.PI / 2);
+      const material = new THREE.MeshLambertMaterial({ color: 0xdddddd });
+      const floor = new THREE.Mesh(floorGeometry, material);
+      floor.receiveShadow = true;
+      scene.add(floor);
 
       const groundShape = new CANNON.Plane();
       const groundBody = new CANNON.Body({ mass: 0, material: physicsStaticMaterial });
@@ -42,26 +42,28 @@ const Demo = () => {
       sphereBody.linearDamping = 0.9;
       world.addBody(sphereBody);
 
+      const delta = webgl.clock.getDelta();
+
+      const polar = webgl.controls.get();
+      console.log(polar);
+
       enterframe.add(() => {
         debuger.update();
       });
 
-      // GlbLoader(Avatar).then((e) => {
-      //   const { model, mixers, gltf } = e;
+      GlbLoader(Avatar).then((e) => {
+        const { model, mixers, gltf } = e;
 
-      //   const scale = 1;
-      //   model.scale.set(scale, scale, scale);
-      //   // webgl.scene.add(model);
+        const scale = 1;
+        model.scale.set(scale, scale, scale);
+        webgl.scene.add(model);
 
-      //   // animation clip update
-      //   webgl.enterframe.add(() => {
-      //     // =>  same requestAnimationFrame
-      //     const delta = webgl.clock.getDelta();
-
-      //     mixers[0].update(delta);
-      //     webgl.stats.end();
-      //   });
-      // });
+        // animation clip update
+        webgl.enterframe.add(() => {
+          mixers[0].update(delta);
+          webgl.stats.end();
+        });
+      });
 
       webglRef = webgl;
     }

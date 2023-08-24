@@ -146,6 +146,8 @@ container.appendChild(render.domElement);
 | .**chase**(mesh: _THREE.Mesh_, height:_number_) | camera will follow target smoothly |                         **mesh**:_THREE.vector3_                         |   void |
 | .**lock**()                                     |            lock camera             |                                                                          |   void |
 | .**unlock**()                                   |           unlock camera            |                                                                          |   void |
+| .**set**()                                      |       set angle and distance       |   { **polar**:_Number_, **azimuth**:_number_, **distance**: _number_}    |   void |
+| .**get**()                                      |       get angle and distance       |   { **polar**:_Number_, **azimuth**:_number_, **distance**: _number_}    |   void |
 
 #### Default light config
 
