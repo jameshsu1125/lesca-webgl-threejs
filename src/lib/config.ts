@@ -68,6 +68,7 @@ const light: LightUniforms = {
 
 const renderer: RendererUniforms = {
   alpha: false,
+  preserveDrawingBuffer: false,
   shadowType: THREE.PCFSoftShadowMap,
   exposure: 0.5,
   outputEncoding: THREE.sRGBEncoding,
