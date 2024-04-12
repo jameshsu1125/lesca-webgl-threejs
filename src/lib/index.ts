@@ -88,6 +88,10 @@ export default class Webgl {
     const cannonEsDebuger = new CannonEsDebuger(this.scene, this.world);
     return cannonEsDebuger;
   }
+
+  updateMatrix() {
+    this.renderer.update(this.camera, this.options.camera.dom);
+  }
 }
 
 export { THREE };

@@ -4,5 +4,6 @@ export default class Renderer {
     private options;
     resize: Function;
     renderer: THREE.WebGLRenderer;
+    update: Function;
     constructor(options: RendererUniforms);
 }
