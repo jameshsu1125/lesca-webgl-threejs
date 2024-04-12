@@ -89,3 +89,5 @@ export default class Webgl {
     return cannonEsDebuger;
   }
 }
+
+export { THREE };

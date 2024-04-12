@@ -12,15 +12,15 @@ import {
 const fps: FPS = 0;
 
 const camera: CameraUniforms = {
-  fov: 75,
-  far: 200,
+  fov: 50,
+  far: 1000,
   type: CameraType.perspective,
   dom: undefined,
 };
 
 // todo => https://threejs.org/examples/webgl_shaders_sky.html
 const sky: SkyUniforms = {
-  enabled: false,
+  enabled: true,
   turbidity: 0,
   rayleigh: 0.079,
   mieCoefficient: 0.023,
@@ -30,8 +30,8 @@ const sky: SkyUniforms = {
 };
 
 const controls: ControlsUniforms = {
-  distance: { min: 30, max: 30 },
-  polar: { min: 35, max: 35 },
+  distance: { min: 3, max: 100 },
+  polar: { min: -90, max: 90 },
   azimuth: { min: -Infinity, max: Infinity },
   default: {
     polar: 0,
@@ -44,7 +44,7 @@ const controls: ControlsUniforms = {
 
 const light: LightUniforms = {
   ambient: {
-    color: 0x5289d2,
+    color: 0xffffff,
     intensity: 0.6,
   },
   point: {

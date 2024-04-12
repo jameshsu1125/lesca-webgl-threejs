@@ -24,3 +24,4 @@ export default class Webgl {
     setFPS(fps: number): void;
     addCannonDebuger(): any;
 }
+export { THREE };

@@ -28,6 +28,7 @@ export default class Camera {
       return;
     }
 
-    this.camera = new THREE.PerspectiveCamera(fov, Number(width) / Number(height), 1);
+    this.camera = new THREE.PerspectiveCamera(fov, Number(width) / Number(height), 1, far);
+    this.camera.position.set(0, 0, -10);
   }
 }
