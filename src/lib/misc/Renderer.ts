@@ -21,7 +21,7 @@ export default class Renderer {
     renderer.shadowMap.type = shadowType as THREE.ShadowMapType;
     renderer.toneMappingExposure = exposure;
     // renderer.physicallyCorrectLights = physicallyCorrectLights;
-    // renderer.outputEncoding = outputEncoding;
+    renderer.outputEncoding = outputEncoding;
 
     this.resize = (Camera: THREE.OrthographicCamera, dom: HTMLElement) => {
       const rendererSetSize = () => {

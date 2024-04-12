@@ -15,6 +15,7 @@ const camera: CameraUniforms = {
   fov: 75,
   far: 200,
   type: CameraType.perspective,
+  dom: undefined,
 };
 
 // todo => https://threejs.org/examples/webgl_shaders_sky.html

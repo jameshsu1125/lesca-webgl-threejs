@@ -10,7 +10,7 @@ export default class Light {
         point?: THREE.PointLight;
         spot?: THREE.SpotLight;
     };
-    target: THREE.Object3D<THREE.Object3DEventMap> | undefined;
+    target: THREE.Object3D<THREE.Event> | undefined;
     constructor(Scene: THREE.Scene, options: LightUniforms);
     update(options: TY): void;
 }

@@ -1,3 +1,4 @@
+/// <reference types="cannon-es" />
 import * as THREE from 'three';
 import Light from './misc/Light';
 import Control from './misc/OrbitControls';

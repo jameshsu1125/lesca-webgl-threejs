@@ -26,7 +26,7 @@ import { CameraType } from 'lesca-webgl-threejs/types';
 
 const config = {
   fps: 0,
-  camera: { zoom: 30, far: 75, type: CameraType.perspective },
+  camera: { zoom: 30, far: 75, type: CameraType.perspective, dom: undefined },
   sky: {
     enabled: true,
     turbidity: 3.8,
