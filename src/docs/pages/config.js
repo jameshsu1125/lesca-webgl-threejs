@@ -1,7 +1,8 @@
 import * as THREE from 'three';
 import Config from '../../lib/config';
-import { CameraType } from '../../lib/types';
+
 export const config = { ...Config };
+
 // export const config = {
 //   fps: 30,
 //   camera: { fov: 50, far: 1000, type: CameraType.perspective },

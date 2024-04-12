@@ -21,25 +21,33 @@ export default class Renderer {
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = shadowType as THREE.ShadowMapType;
     renderer.toneMappingExposure = exposure;
-    // renderer.physicallyCorrectLights = physicallyCorrectLights;
     renderer.outputEncoding = outputEncoding;
 
-    this.update = (Camera: THREE.OrthographicCamera, dom: HTMLElement) => {
+    this.update = (
+      Camera: THREE.OrthographicCamera | THREE.PerspectiveCamera,
+      dom: HTMLElement,
+    ) => {
       const { innerWidth, innerHeight } = window;
 
       const width: number = dom instanceof HTMLElement ? dom.clientWidth : innerWidth;
       const height: number = dom instanceof HTMLElement ? dom.clientHeight : innerHeight;
 
-      Camera.left = Number(width) / -2;
-      Camera.right = Number(width) / 2;
-      Camera.top = Number(height) / 2;
-      Camera.bottom = Number(height) / -2;
+      if (Camera instanceof THREE.PerspectiveCamera) Camera.aspect = width / height;
+      else {
+        Camera.left = width / -2;
+        Camera.right = width / 2;
+        Camera.top = height / 2;
+        Camera.bottom = height / -2;
+      }
 
       Camera.updateProjectionMatrix();
-      renderer.setSize(width || innerWidth, height || innerHeight);
+      renderer.setSize(width, height);
     };
 
-    this.resize = (camera: THREE.OrthographicCamera, dom: HTMLElement) => {
+    this.resize = (
+      camera: THREE.OrthographicCamera | THREE.PerspectiveCamera,
+      dom: HTMLElement,
+    ) => {
       this.update(camera, dom);
       window.addEventListener('resize', () => {
         this.update(camera, dom);

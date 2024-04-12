@@ -21,14 +21,13 @@ export default class Camera {
         Number(width) / 2,
         Number(height) / 2,
         Number(height) / -2,
-        1,
+        0.01,
         far,
       );
       this.camera.zoom = fov;
-      return;
+    } else {
+      this.camera = new THREE.PerspectiveCamera(fov, Number(width) / Number(height), 0.01, far);
     }
-
-    this.camera = new THREE.PerspectiveCamera(fov, Number(width) / Number(height), 1, far);
     this.camera.position.set(0, 0, -10);
   }
 }

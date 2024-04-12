@@ -12,7 +12,7 @@ import {
 const fps: FPS = 0;
 
 const camera: CameraUniforms = {
-  fov: 50,
+  fov: 70,
   far: 1000,
   type: CameraType.perspective,
   dom: undefined,
@@ -73,7 +73,6 @@ const renderer: RendererUniforms = {
   shadowType: THREE.PCFSoftShadowMap,
   exposure: 0.5,
   outputEncoding: THREE.sRGBEncoding,
-  physicallyCorrectLights: false,
 };
 
 const physics = false;

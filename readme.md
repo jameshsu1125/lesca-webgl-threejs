@@ -77,7 +77,6 @@ const config = {
     shadowType: THREE.PCFSoftShadowMap,
     exposure: 0.5,
     outputEncoding: THREE.sRGBEncoding,
-    physicallyCorrectLights: false,
   },
   physics: false,
   stats: true,
@@ -184,13 +183,12 @@ container.appendChild(render.domElement);
 
 #### Default renderer config
 
-| key                                   |      docs       |              default |
-| :------------------------------------ | :-------------: | -------------------: |
-| **alpha**:_boolean_                   | [WebGLRenderer] |                false |
-| **shadowType**:_number_               | [WebGLRenderer] | THREE.BasicShadowMap |
-| **exposure**:_number_                 | [WebGLRenderer] |                  0.5 |
-| **outputEncoding**:_number_           | [WebGLRenderer] |   THREE.sRGBEncoding |
-| **physicallyCorrectLights**:_boolean_ | [WebGLRenderer] |                false |
+| key                         |      docs       |              default |
+| :-------------------------- | :-------------: | -------------------: |
+| **alpha**:_boolean_         | [WebGLRenderer] |                false |
+| **shadowType**:_number_     | [WebGLRenderer] | THREE.BasicShadowMap |
+| **exposure**:_number_       | [WebGLRenderer] |                  0.5 |
+| **outputEncoding**:_number_ | [WebGLRenderer] |   THREE.sRGBEncoding |
 
 #### Default physics config
 
