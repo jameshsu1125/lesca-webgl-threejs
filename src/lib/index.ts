@@ -89,8 +89,8 @@ export default class Webgl {
     return cannonEsDebuger;
   }
 
-  updateMatrix() {
-    this.renderer.update(this.camera, this.options.camera.dom);
+  updateMatrix(dom?: HTMLElement) {
+    this.renderer.update(this.camera, dom || this.options.camera.dom);
   }
 }
 

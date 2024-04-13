@@ -24,6 +24,6 @@ export default class Webgl {
     constructor(options: Uniforms);
     setFPS(fps: number): void;
     addCannonDebuger(): any;
-    updateMatrix(): void;
+    updateMatrix(dom?: HTMLElement): void;
 }
 export { THREE };
