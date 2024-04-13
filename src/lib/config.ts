@@ -37,6 +37,7 @@ const controls: ControlsUniforms = {
   default: {
     polar: 0,
     azimuth: 0,
+    distance: 50,
   },
   offsetAzimuth: 0,
   enabled: true,

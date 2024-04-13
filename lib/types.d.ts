@@ -64,9 +64,10 @@ export type ControlsUniforms = {
         min: number;
         max: number;
     };
-    default?: {
+    default: {
         polar: number;
         azimuth: number;
+        distance: number;
     };
     offsetAzimuth: number;
     enabled: boolean;

@@ -33,7 +33,7 @@ export default class OrbitControls {
 
   constructor(Camera: THREE.Camera, Renderer: THREE.WebGLRenderer, options: ControlsUniforms) {
     this.options = { ...config, ...options };
-    const { distance, polar, azimuth, enabled } = this.options;
+    const { polar, azimuth, enabled } = this.options;
     this.controls = new Controls(Camera, Renderer.domElement);
     this.camera = Camera;
     this.controls.enabled = enabled;
@@ -44,18 +44,25 @@ export default class OrbitControls {
     this.controls.maxAzimuthAngle = degreeToRadian(azimuth.max);
     this.controls.minAzimuthAngle = degreeToRadian(azimuth.min);
 
-    this.controls.minDistance = distance.min;
-    this.controls.minZoom = distance.min;
-    this.controls.maxDistance = distance.max;
-    this.controls.maxZoom = distance.max;
-
     this.azimuthAngle = this.controls.getPolarAngle();
 
-    if (this.options.default) {
-      const { polar, azimuth } = this.options.default;
-      if (polar !== undefined) this.controls.setPolarAngle(degreeToRadian(90 - polar));
-      if (azimuth !== undefined) this.controls.setAzimuthalAngle(degreeToRadian(azimuth));
-    }
+    this.controls.setPolarAngle(degreeToRadian(90 - this.options.default.polar));
+    this.controls.setAzimuthalAngle(degreeToRadian(this.options.default.azimuth));
+    this.setDistance(this.options.default.distance);
+  }
+
+  setDistance(value: number) {
+    const { distance } = this.options;
+
+    this.controls.minDistance = value;
+    this.controls.maxDistance = value;
+
+    requestAnimationFrame(() => {
+      this.controls.minDistance = distance.min;
+      this.controls.minZoom = distance.min;
+      this.controls.maxDistance = distance.max;
+      this.controls.maxZoom = distance.max;
+    });
   }
 
   fixed(config: PAT = { target: new THREE.Vector3(0, 0, 0) }) {

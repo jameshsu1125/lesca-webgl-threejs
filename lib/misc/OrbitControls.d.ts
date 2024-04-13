@@ -16,6 +16,7 @@ export default class OrbitControls {
     azimuthAngle: number;
     private camera;
     constructor(Camera: THREE.Camera, Renderer: THREE.WebGLRenderer, options: ControlsUniforms);
+    setDistance(value: number): void;
     fixed(config?: PAT): void;
     getDistance(): number;
     get(): {
