@@ -1,11 +1,11 @@
 import * as THREE from 'three';
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader';
 import { GLTF, GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-import { DefaultGLBOption } from './config';
+import { GLBLoaderConfig } from './config';
 import { GLBOption, GMM } from './types';
 
 const GlbLoader = (url: string, options: GLBOption): Promise<GMM> => {
-  const combinedOptions = { ...DefaultGLBOption, ...options };
+  const combinedOptions = { ...GLBLoaderConfig, ...options };
   const { onProcess, loop, castShadow, receiveShadow, material: mat } = combinedOptions;
 
   const loader = new GLTFLoader();

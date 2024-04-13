@@ -93,7 +93,7 @@ const Config = {
 /**
  * https://threejs.org/manual/#en/materials
  */
-export const DefaultGLBOption: GLBOption = {
+export const GLBLoaderConfig: GLBOption = {
   onProcess: (loaded, total) => `${(loaded / total) * 100}% loaded`,
   loop: true,
   castShadow: true,

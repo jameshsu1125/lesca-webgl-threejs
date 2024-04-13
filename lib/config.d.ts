@@ -18,6 +18,6 @@ declare const Config: {
 /**
  * https://threejs.org/manual/#en/materials
  */
-export declare const DefaultGLBOption: GLBOption;
+export declare const GLBLoaderConfig: GLBOption;
 export default Config;
 export { camera, sky, controls, light, renderer, physics };
