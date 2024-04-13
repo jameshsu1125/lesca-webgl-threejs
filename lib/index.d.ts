@@ -2,11 +2,12 @@
 import * as THREE from 'three';
 import Light from './misc/Light';
 import Control from './misc/OrbitControls';
+import Renderer from './misc/Renderer';
 import Sky from './misc/Sky';
 import { Uniforms } from './types';
 export default class Webgl {
     private options;
-    private renderer;
+    renderer: Renderer;
     private update;
     scene: THREE.Scene;
     camera: THREE.Camera;

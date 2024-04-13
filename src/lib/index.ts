@@ -15,7 +15,7 @@ const CannonEsDebuger = require('cannon-es-debugger').default;
 
 export default class Webgl {
   private options: Uniforms;
-  private renderer: Renderer;
+  public renderer: Renderer;
   private update: () => void;
 
   public scene: THREE.Scene;
