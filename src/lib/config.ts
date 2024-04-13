@@ -7,6 +7,7 @@ import {
   RendererUniforms,
   FPS,
   CameraType,
+  GLBOption,
 } from './types';
 
 const fps: FPS = 0;
@@ -87,6 +88,22 @@ const Config = {
   renderer,
   physics,
   stats,
+};
+
+/**
+ * https://threejs.org/manual/#en/materials
+ */
+export const DefaultGLBOption: GLBOption = {
+  onProcess: (loaded, total) => `${(loaded / total) * 100}% loaded`,
+  loop: true,
+  castShadow: true,
+  receiveShadow: false,
+  material: {
+    metalness: 0,
+    roughness: 1,
+    clearcoat: 0,
+    clearcoatRoughness: 0.5,
+  },
 };
 
 export default Config;

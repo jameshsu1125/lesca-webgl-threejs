@@ -1,3 +1,5 @@
+import { GLTF } from 'three/examples/jsm/loaders/GLTFLoader';
+
 export type FPS = number;
 
 export type SkyUniforms = {
@@ -85,4 +87,23 @@ export type Uniforms = {
   camera: CameraUniforms;
   controls: ControlsUniforms;
   renderer: RendererUniforms;
+};
+
+export type GLBOption = {
+  onProcess: (loaded: number, total: number) => {};
+  loop: boolean;
+  castShadow: boolean | string[];
+  receiveShadow: boolean | string[];
+  material: {
+    metalness: number;
+    roughness: number;
+    clearcoat: number;
+    clearcoatRoughness: number;
+  };
+};
+
+export type GMM = {
+  gltf: GLTF;
+  model: THREE.Group;
+  mixers: THREE.AnimationMixer[];
 };
