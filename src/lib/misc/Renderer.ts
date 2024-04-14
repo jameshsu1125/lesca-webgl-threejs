@@ -17,7 +17,7 @@ export default class Renderer {
   constructor(options: RendererUniforms, dom: HTMLElement | null = null, camera: CameraTypes) {
     this.options = { ...config, ...options };
     const { alpha, shadowType, exposure, outputEncoding, preserveDrawingBuffer } = this.options;
-    const renderer = new THREE.WebGLRenderer({ alpha, preserveDrawingBuffer });
+    const renderer = new THREE.WebGLRenderer({ alpha, preserveDrawingBuffer, antialias: true });
 
     renderer.setPixelRatio(devicePixelRatio);
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
