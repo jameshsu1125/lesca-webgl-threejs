@@ -1,19 +1,22 @@
 import * as THREE from 'three';
-import { RendererUniforms } from '../types';
 import { renderer as config } from '../config';
+import { CameraTypes, RendererUniforms } from '../types';
 
 const { devicePixelRatio } = window;
 
 export default class Renderer {
+  private dom: HTMLElement | null;
   private options: RendererUniforms;
-  public resize: Function;
   public renderer: THREE.WebGLRenderer;
-  public update: Function;
+  private camera: CameraTypes;
+  public update: () => void;
+  public addListeners: () => void;
+  public removeListeners: () => void;
+  public updateDom: (dom: HTMLElement) => void;
 
-  constructor(options: RendererUniforms) {
+  constructor(options: RendererUniforms, dom: HTMLElement | null = null, camera: CameraTypes) {
     this.options = { ...config, ...options };
     const { alpha, shadowType, exposure, outputEncoding, preserveDrawingBuffer } = this.options;
-
     const renderer = new THREE.WebGLRenderer({ alpha, preserveDrawingBuffer });
 
     renderer.setPixelRatio(devicePixelRatio);
@@ -23,36 +26,38 @@ export default class Renderer {
     renderer.toneMappingExposure = exposure;
     renderer.outputEncoding = outputEncoding;
 
-    this.update = (
-      Camera: THREE.OrthographicCamera | THREE.PerspectiveCamera,
-      dom: HTMLElement,
-    ) => {
+    this.dom = dom;
+    this.camera = camera;
+
+    this.update = () => {
       const { innerWidth, innerHeight } = window;
 
-      const width: number = dom instanceof HTMLElement ? dom.clientWidth : innerWidth;
-      const height: number = dom instanceof HTMLElement ? dom.clientHeight : innerHeight;
+      const width: number = this.dom instanceof HTMLElement ? this.dom.clientWidth : innerWidth;
+      const height: number = this.dom instanceof HTMLElement ? this.dom.clientHeight : innerHeight;
 
-      if (Camera instanceof THREE.PerspectiveCamera) Camera.aspect = width / height;
+      if (this.camera instanceof THREE.PerspectiveCamera) this.camera.aspect = width / height;
       else {
-        Camera.left = width / -2;
-        Camera.right = width / 2;
-        Camera.top = height / 2;
-        Camera.bottom = height / -2;
+        this.camera.left = width / -2;
+        this.camera.right = width / 2;
+        this.camera.top = height / 2;
+        this.camera.bottom = height / -2;
       }
 
-      Camera.updateProjectionMatrix();
+      this.camera.updateProjectionMatrix();
       renderer.setSize(width, height);
     };
 
-    this.resize = (
-      camera: THREE.OrthographicCamera | THREE.PerspectiveCamera,
-      dom: HTMLElement,
-    ) => {
-      this.update(camera, dom);
-      window.addEventListener('resize', () => {
-        this.update(camera, dom);
-        setTimeout(() => this.update(camera, dom), 500);
-      });
+    this.updateDom = (dom: HTMLElement) => {
+      this.dom = dom;
+    };
+
+    this.addListeners = () => {
+      this.update();
+      window.addEventListener('resize', this.update);
+    };
+
+    this.removeListeners = () => {
+      window.removeEventListener('resize', this.update);
     };
 
     this.renderer = renderer;

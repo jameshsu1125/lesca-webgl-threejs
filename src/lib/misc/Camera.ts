@@ -1,4 +1,4 @@
-import { CameraType, CameraUniforms } from '../types';
+import { CameraType, CameraTypes, CameraUniforms } from '../types';
 import * as THREE from 'three';
 import { camera as config } from '../config';
 
@@ -6,7 +6,7 @@ const { innerWidth, innerHeight } = window;
 
 export default class Camera {
   private options: CameraUniforms;
-  public camera: THREE.PerspectiveCamera | THREE.OrthographicCamera;
+  public camera: CameraTypes;
 
   constructor(options: CameraUniforms) {
     this.options = { ...config, ...options };

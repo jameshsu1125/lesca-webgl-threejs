@@ -1,9 +1,13 @@
 import * as THREE from 'three';
-import { RendererUniforms } from '../types';
+import { CameraTypes, RendererUniforms } from '../types';
 export default class Renderer {
+    private dom;
     private options;
-    resize: Function;
     renderer: THREE.WebGLRenderer;
-    update: Function;
-    constructor(options: RendererUniforms);
+    private camera;
+    update: () => void;
+    addListeners: () => void;
+    removeListeners: () => void;
+    updateDom: (dom: HTMLElement) => void;
+    constructor(options: RendererUniforms, dom: HTMLElement | null | undefined, camera: CameraTypes);
 }

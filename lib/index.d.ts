@@ -4,13 +4,13 @@ import Light from './misc/Light';
 import Control from './misc/OrbitControls';
 import Renderer from './misc/Renderer';
 import Sky from './misc/Sky';
-import { Uniforms } from './types';
+import { CameraTypes, Uniforms } from './types';
 export default class Webgl {
     private options;
     renderer: Renderer;
     private update;
     scene: THREE.Scene;
-    camera: THREE.Camera;
+    camera: CameraTypes;
     light: Light;
     render: THREE.WebGLRenderer;
     controls: Control;
@@ -24,6 +24,9 @@ export default class Webgl {
     constructor(options: Uniforms);
     setFPS(fps: number): void;
     addCannonDebuger(): any;
-    updateMatrix(dom?: HTMLElement): void;
+    updateMatrix(): void;
+    updateDom(dom: HTMLElement): void;
+    addResizeListeners(): void;
+    removeResizeListeners(): void;
 }
 export { THREE };

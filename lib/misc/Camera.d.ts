@@ -1,7 +1,6 @@
-import { CameraUniforms } from '../types';
-import * as THREE from 'three';
+import { CameraTypes, CameraUniforms } from '../types';
 export default class Camera {
     private options;
-    camera: THREE.PerspectiveCamera | THREE.OrthographicCamera;
+    camera: CameraTypes;
     constructor(options: CameraUniforms);
 }

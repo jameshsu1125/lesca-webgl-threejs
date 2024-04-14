@@ -7,7 +7,7 @@ import PhysicsMaterial from './misc/physicsMaterial';
 import PhysicsWorld from './misc/physicWorld';
 import Renderer from './misc/Renderer';
 import Sky from './misc/Sky';
-import { Uniforms } from './types';
+import { CameraTypes, Uniforms } from './types';
 import Frame from 'lesca-enterframe';
 
 const Statsjs = require('stats-js');
@@ -19,7 +19,7 @@ export default class Webgl {
   private update: () => void;
 
   public scene: THREE.Scene;
-  public camera: THREE.Camera;
+  public camera: CameraTypes;
   public light: Light;
   public render: THREE.WebGLRenderer;
   public controls: Control;
@@ -38,8 +38,14 @@ export default class Webgl {
     this.scene = new THREE.Scene();
     this.camera = new Camera(this.options.camera).camera;
     this.light = new Light(this.scene, this.options.light);
-    this.renderer = new Renderer(this.options.renderer);
-    this.renderer.resize(this.camera, this.options.camera.dom);
+    this.renderer = new Renderer(
+      this.options.renderer,
+      this.options.camera.dom || null,
+      this.camera,
+    );
+
+    this.renderer.addListeners();
+
     this.render = this.renderer.renderer;
     this.controls = new Control(this.camera, this.render, this.options.controls);
     this.clock = new THREE.Clock();
@@ -89,8 +95,21 @@ export default class Webgl {
     return cannonEsDebuger;
   }
 
-  updateMatrix(dom?: HTMLElement) {
-    this.renderer.update(this.camera, dom || this.options.camera.dom);
+  updateMatrix() {
+    this.renderer.update();
+  }
+
+  updateDom(dom: HTMLElement) {
+    this.renderer.updateDom(dom);
+    this.updateMatrix();
+  }
+
+  addResizeListeners() {
+    this.renderer.addListeners();
+  }
+
+  removeResizeListeners() {
+    this.renderer.removeListeners();
   }
 }
 

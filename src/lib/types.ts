@@ -108,3 +108,5 @@ export type GMM = {
   model: THREE.Group;
   mixers: THREE.AnimationMixer[];
 };
+
+export type CameraTypes = THREE.OrthographicCamera | THREE.PerspectiveCamera;
