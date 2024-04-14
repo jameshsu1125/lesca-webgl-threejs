@@ -20,7 +20,19 @@ export default class Webgl {
     physicsStaticMaterial: import('material/Material').Material;
     world: import('world/World').World;
     stats: any;
-    enterframe: any;
+    enterframe: {
+        add: (doSomething: Function) => void;
+        todo: {
+            do: Function;
+            list: Function[];
+        };
+        play: () => void;
+        stop: () => void;
+        destroy: () => void;
+        undo: () => void;
+        setFPS: (value?: number | undefined) => void;
+        reset: () => void;
+    };
     constructor(options: Uniforms);
     setFPS(fps: number): void;
     addCannonDebuger(): any;

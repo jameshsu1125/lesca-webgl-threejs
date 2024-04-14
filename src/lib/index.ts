@@ -30,7 +30,7 @@ export default class Webgl {
   public world!: import('world/World').World;
 
   public stats: any;
-  public enterframe: any;
+  public enterframe = Frame;
 
   constructor(options: Uniforms) {
     this.options = { ...Config, ...options };
@@ -79,15 +79,13 @@ export default class Webgl {
       this.world?.step(1 / 60, this.clock.getDelta());
     };
 
-    this.enterframe = Frame;
-
-    Frame.setFPS(this.options.fps);
-    Frame.add(this.update);
-    Frame.play();
+    this.enterframe.setFPS(this.options.fps);
+    this.enterframe.add(this.update);
+    this.enterframe.play();
   }
 
   setFPS(fps: number) {
-    Frame.setFPS(fps);
+    this.enterframe.setFPS(fps);
   }
 
   addCannonDebuger() {
