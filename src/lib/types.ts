@@ -72,8 +72,8 @@ export type ControlsUniforms = {
 };
 
 export type RendererUniforms = {
-  alpha: false;
-  preserveDrawingBuffer: false;
+  alpha: boolean;
+  preserveDrawingBuffer: boolean;
   shadowType: number;
   exposure: number;
   outputEncoding: number;
