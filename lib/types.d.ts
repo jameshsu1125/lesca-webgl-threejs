@@ -15,6 +15,7 @@ export type LightUniforms = {
         intensity: number;
     };
     point: {
+        enabled: boolean;
         color: number;
         intensity: number;
         distance: number;
@@ -26,6 +27,7 @@ export type LightUniforms = {
         };
     };
     spot: {
+        enabled: boolean;
         color: number;
         intensity: number;
         distance: number;

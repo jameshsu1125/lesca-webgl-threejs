@@ -54,6 +54,7 @@ const config = {
       intensity: 0.6,
     },
     point: {
+      enabled: true,
       color: 0x999999,
       intensity: 0.9,
       distance: 3,
@@ -61,6 +62,7 @@ const config = {
       position: { x: 0, y: 3, z: 10 },
     },
     spot: {
+      enabled: false,
       color: 0x999999,
       intensity: 0.9,
       distance: 3,

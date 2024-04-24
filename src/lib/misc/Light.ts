@@ -30,7 +30,7 @@ export default class Light {
     const light = new THREE.AmbientLight(ambient.color, ambient.intensity);
     Scene.add(light);
 
-    if (options.point) {
+    if (options.point.enabled) {
       const pointLight = new THREE.PointLight(point.color, point.intensity, point.distance);
       pointLight.castShadow = true;
       pointLight.decay = point.decay;
@@ -50,7 +50,7 @@ export default class Light {
       }
     }
 
-    if (options.spot) {
+    if (options.spot.enabled) {
       const spotLight = new THREE.SpotLight(spot.color, spot.intensity, spot.distance);
       spotLight.castShadow = true;
       spotLight.angle = Math.PI * 0.12;
