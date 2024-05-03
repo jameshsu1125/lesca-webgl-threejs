@@ -1,4 +1,5 @@
 import { GLTF } from 'three/examples/jsm/loaders/GLTFLoader';
+import * as THREE from 'three';
 
 export type FPS = number;
 
@@ -78,7 +79,7 @@ export type RendererUniforms = {
   preserveDrawingBuffer: boolean;
   shadowType: number;
   exposure: number;
-  outputEncoding: number;
+  outputEncoding: THREE.ColorSpace;
 };
 
 export type Uniforms = {

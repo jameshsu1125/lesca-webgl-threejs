@@ -24,7 +24,7 @@ export default class Renderer {
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = shadowType as THREE.ShadowMapType;
     renderer.toneMappingExposure = exposure;
-    renderer.outputEncoding = outputEncoding;
+    renderer.outputColorSpace = outputEncoding;
 
     this.dom = dom;
     this.camera = camera;
