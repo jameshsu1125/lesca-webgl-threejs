@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { light as config, light } from '../config';
+import { light as config } from '../config';
 import { LightUniforms } from '../types';
 
 type TY = {
@@ -9,7 +9,7 @@ type TY = {
 
 const defaultTY = {
   target: new THREE.Mesh(),
-  offset: light.spot.position.y,
+  offset: config.lights[0].position.y,
 };
 
 export default class Light {
@@ -25,56 +25,58 @@ export default class Light {
     this.lights = {};
     this.target = undefined;
 
-    const { ambient, spot, point, shadowMapSize, debug } = this.options;
+    const { ambient, lights, shadowMapSize, debug } = this.options;
 
     const light = new THREE.AmbientLight(ambient.color, ambient.intensity);
     Scene.add(light);
 
-    if (options.point.enabled) {
-      const pointLight = new THREE.PointLight(point.color, point.intensity, point.distance);
-      pointLight.castShadow = point.castShadow;
-      pointLight.decay = point.decay;
-      pointLight.shadow.bias = point.bias;
-      pointLight.shadow.blurSamples = point.blurSamples;
+    lights.forEach((light) => {
+      if (light.type === 'point') {
+        if (!light.enabled) return;
+        const pointLight = new THREE.PointLight(light.color, light.intensity, light.distance);
+        pointLight.castShadow = light.castShadow;
+        pointLight.decay = light.decay;
+        pointLight.shadow.bias = light.bias;
+        pointLight.shadow.blurSamples = light.blurSamples;
 
-      pointLight.shadow.mapSize.width = shadowMapSize;
-      pointLight.shadow.mapSize.height = shadowMapSize;
+        pointLight.shadow.mapSize.width = shadowMapSize;
+        pointLight.shadow.mapSize.height = shadowMapSize;
 
-      const { x, y, z } = point.position;
-      pointLight.position.set(x, y, z);
+        const { x, y, z } = light.position;
+        pointLight.position.set(x, y, z);
 
-      Scene.add(pointLight);
-      this.lights.point = pointLight;
+        Scene.add(pointLight);
+        this.lights.point = pointLight;
 
-      if (debug) {
-        const helper = new THREE.PointLightHelper(pointLight);
-        Scene.add(helper);
+        if (debug) {
+          const helper = new THREE.PointLightHelper(pointLight);
+          Scene.add(helper);
+        }
+      } else {
+        if (!light.enabled) return;
+        const spotLight = new THREE.SpotLight(light.color, light.intensity, light.distance);
+        spotLight.castShadow = light.castShadow;
+        spotLight.angle = light.angle;
+        spotLight.penumbra = light.penumbra;
+        spotLight.decay = light.decay;
+        spotLight.shadow.mapSize.width = shadowMapSize;
+        spotLight.shadow.mapSize.height = shadowMapSize;
+        spotLight.shadow.bias = light.bias;
+        spotLight.shadow.blurSamples = light.blurSamples;
+
+        const { x, y, z } = light.position;
+        spotLight.position.set(x, y, z);
+
+        Scene.add(spotLight);
+        this.target = spotLight.target;
+        this.lights.spot = spotLight;
+
+        if (debug) {
+          const helper = new THREE.SpotLightHelper(spotLight);
+          Scene.add(helper);
+        }
       }
-    }
-
-    if (options.spot.enabled) {
-      const spotLight = new THREE.SpotLight(spot.color, spot.intensity, spot.distance);
-      spotLight.castShadow = spot.castShadow;
-      spotLight.angle = Math.PI * 0.12;
-      spotLight.penumbra = 1;
-      spotLight.decay = point.decay;
-      spotLight.shadow.mapSize.width = shadowMapSize;
-      spotLight.shadow.mapSize.height = shadowMapSize;
-      spotLight.shadow.bias = spot.bias;
-      spotLight.shadow.blurSamples = spot.blurSamples;
-
-      const { x, y, z } = spot.position;
-      spotLight.position.set(x, y, z);
-
-      Scene.add(spotLight);
-      this.target = spotLight.target;
-      this.lights.spot = spotLight;
-
-      if (debug) {
-        const helper = new THREE.SpotLightHelper(spotLight);
-        Scene.add(helper);
-      }
-    }
+    });
   }
 
   update(options: TY) {

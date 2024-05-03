@@ -13,43 +13,50 @@ export type SkyUniforms = {
   azimuth: number;
 };
 
+export type LightTypes = 'point' | 'spot';
+
+export type PointLight = {
+  type: 'point';
+  castShadow: boolean;
+  blurSamples: number;
+  bias: number;
+  enabled: boolean;
+  color: number;
+  intensity: number;
+  distance: number;
+  decay: number;
+  position: {
+    x: number;
+    y: number;
+    z: number;
+  };
+};
+
+export type SpotLight = {
+  type: 'spot';
+  castShadow: boolean;
+  blurSamples: number;
+  bias: number;
+  enabled: boolean;
+  color: number;
+  intensity: number;
+  distance: number;
+  decay: number;
+  angle: number;
+  penumbra: number;
+  position: {
+    x: number;
+    y: number;
+    z: number;
+  };
+};
+
 export type LightUniforms = {
   ambient: {
     color: number;
     intensity: number;
   };
-  point: {
-    castShadow: boolean;
-    blurSamples: number;
-    bias: number;
-    enabled: boolean;
-    color: number;
-    intensity: number;
-    distance: number;
-    decay: number;
-    position: {
-      x: number;
-      y: number;
-      z: number;
-    };
-  };
-  spot: {
-    castShadow: boolean;
-    blurSamples: number;
-    bias: number;
-    enabled: boolean;
-    color: number;
-    intensity: number;
-    distance: number;
-    decay: number;
-    angle: number;
-    penumbra: number;
-    position: {
-      x: number;
-      y: number;
-      z: number;
-    };
-  };
+  lights: (PointLight | SpotLight)[];
   shadowMapSize: number;
   debug: Boolean;
 };
