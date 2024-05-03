@@ -63,7 +63,11 @@ export default class Light {
 
         case 'hemisphere':
           if (!light.enabled) return;
-          const hemisphereLight = new THREE.HemisphereLight(light.color, light.intensity);
+          const hemisphereLight = new THREE.HemisphereLight(
+            light.color,
+            light.groundColor,
+            light.intensity,
+          );
           hemisphereLight.position.set(light.position.x, light.position.y, light.position.z);
           Scene.add(hemisphereLight);
 

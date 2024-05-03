@@ -50,6 +50,7 @@ export type HemisphereLight = {
     enabled: boolean;
     intensity: number;
     color: number;
+    groundColor: number;
     position: {
         x: number;
         y: number;
