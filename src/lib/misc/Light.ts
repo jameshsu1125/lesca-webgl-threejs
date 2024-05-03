@@ -14,15 +14,17 @@ const defaultTY = {
 
 export default class Light {
   private options: LightUniforms;
-  public lights: {
-    point?: THREE.PointLight;
-    spot?: THREE.SpotLight;
-  };
+  public lights: (
+    | THREE.PointLight
+    | THREE.SpotLight
+    | THREE.DirectionalLight
+    | THREE.HemisphereLight
+  )[];
   public target: THREE.Object3D | undefined;
 
   constructor(Scene: THREE.Scene, options: LightUniforms) {
     this.options = { ...config, ...options };
-    this.lights = {};
+    this.lights = [];
     this.target = undefined;
 
     const { ambient, lights, shadowMapSize, debug } = this.options;
@@ -32,66 +34,78 @@ export default class Light {
       Scene.add(light);
     }
 
-    lights.forEach((light) => {
-      if (light.type === 'point') {
-        if (!light.enabled) return;
-        const pointLight = new THREE.PointLight(light.color, light.intensity, light.distance);
-        pointLight.castShadow = light.castShadow;
-        pointLight.decay = light.decay;
-        pointLight.shadow.bias = light.bias;
-        pointLight.shadow.blurSamples = light.blurSamples;
+    this.lights = lights.map((light) => {
+      switch (light.type) {
+        case 'spot':
+          if (!light.enabled) return;
+          const spotLight = new THREE.SpotLight(light.color, light.intensity, light.distance);
+          spotLight.castShadow = light.castShadow;
+          spotLight.angle = light.angle;
+          spotLight.penumbra = light.penumbra;
+          spotLight.decay = light.decay;
+          spotLight.shadow.mapSize.width = shadowMapSize;
+          spotLight.shadow.mapSize.height = shadowMapSize;
+          spotLight.shadow.bias = light.bias;
+          spotLight.shadow.blurSamples = light.blurSamples;
 
-        pointLight.shadow.mapSize.width = shadowMapSize;
-        pointLight.shadow.mapSize.height = shadowMapSize;
+          const { x, y, z } = light.position;
+          spotLight.position.set(x, y, z);
 
-        const { x, y, z } = light.position;
-        pointLight.position.set(x, y, z);
+          Scene.add(spotLight);
+          this.target = spotLight.target;
 
-        Scene.add(pointLight);
-        this.lights.point = pointLight;
+          if (debug) {
+            const helper = new THREE.SpotLightHelper(spotLight);
+            Scene.add(helper);
+          }
 
-        if (debug) {
-          const helper = new THREE.PointLightHelper(pointLight);
-          Scene.add(helper);
-        }
-      } else {
-        if (!light.enabled) return;
-        const spotLight = new THREE.SpotLight(light.color, light.intensity, light.distance);
-        spotLight.castShadow = light.castShadow;
-        spotLight.angle = light.angle;
-        spotLight.penumbra = light.penumbra;
-        spotLight.decay = light.decay;
-        spotLight.shadow.mapSize.width = shadowMapSize;
-        spotLight.shadow.mapSize.height = shadowMapSize;
-        spotLight.shadow.bias = light.bias;
-        spotLight.shadow.blurSamples = light.blurSamples;
+          return spotLight;
 
-        const { x, y, z } = light.position;
-        spotLight.position.set(x, y, z);
+        case 'hemisphere':
+          if (!light.enabled) return;
+          const hemisphereLight = new THREE.HemisphereLight(light.color, light.intensity);
+          hemisphereLight.position.set(light.position.x, light.position.y, light.position.z);
+          Scene.add(hemisphereLight);
 
-        Scene.add(spotLight);
-        this.target = spotLight.target;
-        this.lights.spot = spotLight;
+          if (debug) {
+            const helper = new THREE.HemisphereLightHelper(hemisphereLight, 5);
+            Scene.add(helper);
+          }
 
-        if (debug) {
-          const helper = new THREE.SpotLightHelper(spotLight);
-          Scene.add(helper);
-        }
+          return hemisphereLight;
+
+        case 'direct':
+          if (!light.enabled) return;
+          const directLight = new THREE.DirectionalLight(light.color, light.intensity);
+          directLight.position.set(light.position.x, light.position.y, light.position.z);
+          Scene.add(directLight);
+
+          if (debug) {
+            const helper = new THREE.DirectionalLightHelper(directLight);
+            Scene.add(helper);
+          }
+
+          return directLight;
+
+        default:
+        case 'point':
+          if (!light.enabled) return;
+          const pointLight = new THREE.PointLight(light.color, light.intensity, light.distance);
+          pointLight.castShadow = light.castShadow;
+          pointLight.decay = light.decay;
+          pointLight.shadow.bias = light.bias;
+          pointLight.shadow.blurSamples = light.blurSamples;
+          pointLight.shadow.mapSize.width = shadowMapSize;
+          pointLight.shadow.mapSize.height = shadowMapSize;
+          pointLight.position.set(light.position.x, light.position.y, light.position.z);
+          Scene.add(pointLight);
+
+          if (debug) {
+            const helper = new THREE.PointLightHelper(pointLight);
+            Scene.add(helper);
+          }
+          return pointLight;
       }
-    });
-  }
-
-  update(options: TY) {
-    if (!options.target) console.warn('[lesca-webgl-threejs]Three is no target[Mesh] to follow.');
-    const opt = { ...defaultTY, ...options };
-    const { target, offsetY } = opt;
-    const { spot, point } = this.lights;
-    if (spot) {
-      spot.position.set(target.position.x, target.position.y + offsetY, target.position.z);
-      this.target?.position.set(target.position.x, target.position.y, target.position.z);
-    }
-    if (point) {
-      point.position.set(target.position.x, target.position.y + offsetY, target.position.z);
-    }
+    }) as typeof this.lights;
   }
 }

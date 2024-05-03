@@ -10,7 +10,7 @@ export type SkyUniforms = {
     inclination: number;
     azimuth: number;
 };
-export type LightTypes = 'point' | 'spot';
+export type LightTypes = 'point' | 'spot' | 'hemisphere' | 'direct';
 export type PointLight = {
     type: 'point';
     castShadow: boolean;
@@ -45,13 +45,35 @@ export type SpotLight = {
         z: number;
     };
 };
+export type HemisphereLight = {
+    type: 'hemisphere';
+    enabled: boolean;
+    intensity: number;
+    color: number;
+    position: {
+        x: number;
+        y: number;
+        z: number;
+    };
+};
+export type DirectLight = {
+    type: 'direct';
+    enabled: boolean;
+    color: number;
+    intensity: number;
+    position: {
+        x: number;
+        y: number;
+        z: number;
+    };
+};
 export type LightUniforms = {
     ambient: {
         enabled: boolean;
         color: number;
         intensity: number;
     };
-    lights: (PointLight | SpotLight)[];
+    lights: (PointLight | SpotLight | HemisphereLight | DirectLight)[];
     shadowMapSize: number;
     debug: Boolean;
 };
