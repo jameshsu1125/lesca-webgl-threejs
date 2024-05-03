@@ -27,8 +27,10 @@ export default class Light {
 
     const { ambient, lights, shadowMapSize, debug } = this.options;
 
-    const light = new THREE.AmbientLight(ambient.color, ambient.intensity);
-    Scene.add(light);
+    if (ambient.enabled) {
+      const light = new THREE.AmbientLight(ambient.color, ambient.intensity);
+      Scene.add(light);
+    }
 
     lights.forEach((light) => {
       if (light.type === 'point') {

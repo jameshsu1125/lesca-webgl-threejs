@@ -47,6 +47,7 @@ export type SpotLight = {
 };
 export type LightUniforms = {
     ambient: {
+        enabled: boolean;
         color: number;
         intensity: number;
     };

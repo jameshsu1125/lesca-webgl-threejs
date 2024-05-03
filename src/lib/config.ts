@@ -46,6 +46,7 @@ const controls: ControlsUniforms = {
 
 const light: LightUniforms = {
   ambient: {
+    enabled: true,
     color: 0xffffff,
     intensity: 0.6,
   },
