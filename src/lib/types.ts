@@ -19,6 +19,9 @@ export type LightUniforms = {
     intensity: number;
   };
   point: {
+    castShadow: boolean;
+    blurSamples: number;
+    bias: number;
     enabled: boolean;
     color: number;
     intensity: number;
@@ -31,6 +34,9 @@ export type LightUniforms = {
     };
   };
   spot: {
+    castShadow: boolean;
+    blurSamples: number;
+    bias: number;
     enabled: boolean;
     color: number;
     intensity: number;

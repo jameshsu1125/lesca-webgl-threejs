@@ -51,6 +51,9 @@ const light: LightUniforms = {
   },
   point: {
     enabled: true,
+    castShadow: true,
+    bias: 0,
+    blurSamples: 1,
     color: 0x999999,
     intensity: 0.9,
     distance: 3,
@@ -59,6 +62,9 @@ const light: LightUniforms = {
   },
   spot: {
     enabled: false,
+    castShadow: true,
+    bias: 0,
+    blurSamples: 1,
     color: 0x999999,
     intensity: 0.9,
     distance: 3,
