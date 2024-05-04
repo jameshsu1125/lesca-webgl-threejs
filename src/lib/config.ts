@@ -87,7 +87,7 @@ const renderer: RendererUniforms = {
   preserveDrawingBuffer: false,
   shadowType: THREE.PCFSoftShadowMap,
   exposure: 0.5,
-  outputEncoding: THREE.sRGBEncoding,
+  outputEncoding: THREE.SRGBColorSpace,
 };
 
 const physics = false;

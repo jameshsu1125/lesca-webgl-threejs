@@ -116,7 +116,7 @@ export type RendererUniforms = {
     preserveDrawingBuffer: boolean;
     shadowType: number;
     exposure: number;
-    outputEncoding: THREE.TextureEncoding;
+    outputEncoding: THREE.ColorSpace;
 };
 export type Uniforms = {
     physics: boolean;
