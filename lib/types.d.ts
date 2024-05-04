@@ -13,10 +13,10 @@ export type SkyUniforms = {
 export type LightTypes = 'point' | 'spot' | 'hemisphere' | 'direct';
 export type PointLight = {
     type: 'point';
+    enabled: boolean;
     castShadow: boolean;
     blurSamples: number;
     bias: number;
-    enabled: boolean;
     color: number;
     intensity: number;
     distance: number;
@@ -29,10 +29,10 @@ export type PointLight = {
 };
 export type SpotLight = {
     type: 'spot';
+    enabled: boolean;
     castShadow: boolean;
     blurSamples: number;
     bias: number;
-    enabled: boolean;
     color: number;
     intensity: number;
     distance: number;
@@ -60,6 +60,7 @@ export type HemisphereLight = {
 export type DirectLight = {
     type: 'direct';
     enabled: boolean;
+    castShadow: boolean;
     color: number;
     intensity: number;
     position: {
@@ -115,7 +116,7 @@ export type RendererUniforms = {
     preserveDrawingBuffer: boolean;
     shadowType: number;
     exposure: number;
-    outputEncoding: THREE.ColorSpace;
+    outputEncoding: THREE.TextureEncoding;
 };
 export type Uniforms = {
     physics: boolean;

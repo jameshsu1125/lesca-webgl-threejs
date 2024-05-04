@@ -47,7 +47,7 @@ const controls: ControlsUniforms = {
 const light: LightUniforms = {
   ambient: {
     enabled: true,
-    color: 0xffffff,
+    color: 0xb7a46f,
     intensity: 0.6,
   },
   lights: [
@@ -87,7 +87,7 @@ const renderer: RendererUniforms = {
   preserveDrawingBuffer: false,
   shadowType: THREE.PCFSoftShadowMap,
   exposure: 0.5,
-  outputEncoding: THREE.SRGBColorSpace,
+  outputEncoding: THREE.sRGBEncoding,
 };
 
 const physics = false;

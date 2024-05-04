@@ -82,6 +82,7 @@ export default class Light {
           if (!light.enabled) return;
           const directLight = new THREE.DirectionalLight(light.color, light.intensity);
           directLight.position.set(light.position.x, light.position.y, light.position.z);
+          directLight.castShadow = light.castShadow;
           Scene.add(directLight);
 
           if (debug) {
