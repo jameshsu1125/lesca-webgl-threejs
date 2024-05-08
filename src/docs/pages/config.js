@@ -3,6 +3,7 @@ import Config from '../../lib/config';
 
 const config = { ...Config };
 config.controls.default.distance = 3;
-config.light.ambient.enabled = false;
+config.renderer.background = { color: 0x000000, alpha: 0 };
+config.sky.enabled = false;
 
 export { config };

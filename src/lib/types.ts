@@ -120,6 +120,7 @@ export type RendererUniforms = {
   shadowType: number;
   exposure: number;
   outputEncoding: THREE.ColorSpace;
+  background: { color: number; alpha: number };
 };
 
 export type Uniforms = {

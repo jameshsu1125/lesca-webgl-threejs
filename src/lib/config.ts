@@ -88,6 +88,7 @@ const renderer: RendererUniforms = {
   shadowType: THREE.PCFSoftShadowMap,
   exposure: 0.5,
   outputEncoding: THREE.SRGBColorSpace,
+  background: { color: 0x000000, alpha: 1 },
 };
 
 const physics = false;
