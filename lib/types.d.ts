@@ -110,6 +110,8 @@ export type ControlsUniforms = {
     offsetAzimuth: number;
     enabled: boolean;
     panEasing: number;
+    damping: boolean;
+    dampingFactor: number;
 };
 export type RendererUniforms = {
     alpha: boolean;
