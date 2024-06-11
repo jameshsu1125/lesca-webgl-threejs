@@ -1,6 +1,6 @@
 {
   "name": "lesca-webgl-threejs",
-  "version": "2.2.3",
+  "version": "2.2.4",
   "description": "It's can build full page webGL easily.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",

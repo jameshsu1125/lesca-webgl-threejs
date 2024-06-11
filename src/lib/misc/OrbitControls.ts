@@ -52,10 +52,9 @@ export default class OrbitControls {
 
     if (damping) {
       this.controls.enablePan = false;
-      this.controls.enableZoom = false;
       this.controls.enableDamping = true;
-      this.controls.minPolarAngle = 0.8;
-      this.controls.maxPolarAngle = 2.4;
+      // this.controls.minPolarAngle = 0.8;
+      // this.controls.maxPolarAngle = 2.4;
       this.controls.dampingFactor = Math.max(0.05 - (dampingFactor - 1) * 0.05, 0.001);
       this.controls.rotateSpeed = 0.07;
     }
