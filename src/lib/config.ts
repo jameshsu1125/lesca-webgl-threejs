@@ -42,6 +42,8 @@ const controls: ControlsUniforms = {
   offsetAzimuth: 0,
   enabled: true,
   panEasing: 100,
+  damping: false,
+  dampingFactor: 1,
 };
 
 const light: LightUniforms = {
